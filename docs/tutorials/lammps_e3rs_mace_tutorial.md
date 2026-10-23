@@ -56,13 +56,13 @@ Install:
 On macOS, the recommended Rust build uses Apple's Accelerate BLAS:
 
 ```bash
-cargo build -p llmlip-capi --release --features accelerate-blas,parallel
+cargo build -p llmlip-capi --release --no-default-features --features lammps,accelerate-blas,parallel
 ```
 
 On Linux x86-64, use one supported BLAS provider, for example:
 
 ```bash
-cargo build -p llmlip-capi --release --features openblas,parallel
+cargo build -p llmlip-capi --release --no-default-features --features lammps,openblas,parallel
 ```
 
 Do not enable multiple BLAS providers at once.
@@ -117,13 +117,13 @@ target/lammps-build/lmp -help | head
 On macOS:
 
 ```bash
-cargo build -p llmlip-capi --release --features accelerate-blas,parallel
+cargo build -p llmlip-capi --release --no-default-features --features lammps,accelerate-blas,parallel
 ```
 
 On Linux x86-64 with OpenBLAS:
 
 ```bash
-cargo build -p llmlip-capi --release --features openblas,parallel
+cargo build -p llmlip-capi --release --no-default-features --features lammps,openblas,parallel
 ```
 
 The static library should be:

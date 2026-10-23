@@ -1190,6 +1190,7 @@ fn enabled_llmlip_cli_features() -> Vec<&'static str> {
     push_feature!("libxsmm");
     push_feature!("mimalloc");
     push_feature!("openblas");
+    push_feature!("orb");
     push_feature!("orb-f32-edge-mlp");
     push_feature!("parallel");
     push_feature!("parallel-blas");

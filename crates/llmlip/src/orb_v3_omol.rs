@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
-// ORB reference: Orbital Materials, orb-models, revision
-// a5f1a382a72126feff0594b19891e03cde5f843e.
-// Modified implementation: Rust fixed-weight buffers, manual input VJPs,
-// fused attention, and CPU parallel/BLAS execution. See ../../../NOTICE.
-// This entire module is distributed under Apache-2.0; no MIT option is offered.
+// ORB implementation reference: Orbital Materials, orb-models v0.6.2,
+// commit a5f1a382a72126feff0594b19891e03cde5f843e.
+// This project conservatively distributes this module under Apache-2.0.
+// Modified implementation: Rust fixed-weight buffers, explicit input VJPs,
+// fused attention, and CPU parallel/BLAS paths; not upstream Python source.
+// See ../../../LICENSE-APACHE, ../../../NOTICE and
+// ../../../docs/ORB_LICENSE_SCOPE.md for sources and modification details.
 //! State-export gate for the pinned `orb-v3-conservative-omol-v1` runtime contract.
 
 use std::{

@@ -3,7 +3,9 @@
 ## Scope and project license
 
 This is a source-only distribution. Project-authored code is MIT OR Apache-2.0
-unless a file states otherwise. The three LAMMPS C++ interface files named in
+unless a file states otherwise. The ORB runtime module is Apache-2.0; see
+[its scope and build separation](docs/ORB_LICENSE_SCOPE.md) and [NOTICE](NOTICE).
+The three LAMMPS C++ interface files named in
 [their README](lammps_plugin/llmlip/README.md#license-and-distribution) are GPL-2.0-only.
 The root licenses do not relicense third-party code, scientific data or model
 weights. See [distribution policy](docs/distribution_policy.md).
@@ -11,7 +13,7 @@ weights. See [distribution policy](docs/distribution_policy.md).
 ## Source implementation provenance
 
 The [function-level provenance review](docs/SOURCE_PROVENANCE.md) records upstream
-implementation references, preserved license texts, and the unresolved ORB license question.
+implementation references, preserved license texts, and the ORB Apache-2.0 scope.
 Cephes/SIMD attribution and terms are retained in
 [LICENSE-THIRD-PARTY](LICENSE-THIRD-PARTY). This list is not a clearance for MIT-only distribution.
 

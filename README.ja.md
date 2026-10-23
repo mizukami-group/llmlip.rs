@@ -70,12 +70,8 @@ LAMMPSへ直接接続するC++インターフェースファイルはGPL-2.0-onl
 開発者: Wataru Mizukami、Do Tuan Minh、Kenji Ishihara。
 JST COI-NEXT「量子ソフトウェア研究拠点」JPMJPF2014の支援を受けています。
 
-Implementation sources and unresolved license scope are recorded in the
-[source provenance review](docs/SOURCE_PROVENANCE.md).
-
-## ORB license scope clarification
-
-The ORB implementation module is Apache-2.0; see [scope and notices](docs/ORB_LICENSE_SCOPE.md).
-Original MIT OR Apache-2.0 grants do not override it. The current combined
-LAMMPS plugin is not cleared for redistribution under GPL-2.0-only.
-Only the separately licensed source components are in this release scope.
+自作部分はMIT／Apache-2.0の選択を維持しますが、ORB実装モジュールはApache-2.0、
+LAMMPSの3つのC++連携ファイルはGPL-2.0-onlyの例外です。
+LAMMPSにはORBを除外した専用ビルドを使用します。
+[ライセンス範囲とビルド方法](docs/ORB_LICENSE_SCOPE.md)、
+[実装の出典](docs/SOURCE_PROVENANCE.md)、[第三者通知](THIRD_PARTY_LICENSES.md)を参照してください。

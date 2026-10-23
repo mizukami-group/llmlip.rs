@@ -1,8 +1,8 @@
-# Source provenance and unresolved license review
+# Source provenance and license review
 
 This document identifies implementation references, not just package dependencies.
-The current review does **not** clear every source file for an unqualified
-MIT-only distribution. Do not interpret model parity, absence of literal copies,
+The source distribution is **not MIT-only**: the ORB module retains Apache-2.0
+conditions, as specified in [ORB license scope](ORB_LICENSE_SCOPE.md). Do not interpret model parity, absence of literal copies,
 or the root dual-license declaration as proof of independent authorship.
 
 ## Reading the evidence
@@ -78,7 +78,7 @@ nor does it establish which historical intermediary was consulted.
 
 Cephes BSD and SIMD zlib notices are additionally mapped in
 [LICENSE-THIRD-PARTY](../LICENSE-THIRD-PARTY). Their notice omission has been
-addressed; this does not resolve the separate ORB scope question.
+addressed. The ORB scope is now handled by the explicit Apache-2.0 module exception.
 
 | Reference | Revision | Retained text |
 |---|---|---|
@@ -109,20 +109,12 @@ MIT/BSD-licensed adaptations can coexist with original MIT/Apache-2.0 contributi
 when their required copyright, permission and disclaimer texts are retained.
 An attribution URL alone does not replace those texts.
 
-For ORB-derived expression, Apache-2.0 section 4 requires its license, applicable
-notices and prominent modification notices. The architecture correspondence alone
-does not settle derivative-work status, but current evidence is insufficient to
-certify all ORB implementation code as independently authored and MIT-only.
-The complete ORB module now carries Apache-2.0 and modification notices; see
-[ORB license scope](ORB_LICENSE_SCOPE.md). The aggregate package metadata no longer
-offers an unrestricted MIT-only choice. Historical line-by-line authorship is
-not claimed to have been established.
-
-Apache-2.0-only material is not compatible with a GPL-2.0-only combined LAMMPS
-plugin. The existing MIT option for original code cannot cure that mismatch.
-A documented separation/exclusion of such material, a compatible upstream grant,
-or substantiated independent implementation is needed before clearing that binary.
-This is distinct from hosting separate source components together.
+The ORB runtime module now explicitly retains Apache-2.0 conditions, with source
+and modification notices. This resolves the need to claim the whole module is
+independently authored under MIT. The `orb`/`lammps` feature separation excludes
+it from the prescribed LAMMPS build, and CMake checks the supplied library's build
+marker. See [ORB license scope](ORB_LICENSE_SCOPE.md) for the exact boundary and
+remaining general binary-distribution obligations.
 
 The separately fetched e3nn-core dependency has its own third-party notices,
 including MACE/ASE numerical-table provenance. This review does not independently
@@ -130,7 +122,6 @@ clear every primitive in that separate repository. Python/C++ adapters and expor
 were checked for literal code matches in the earlier audit; lack of a match cannot
 prove absence of translated or edited code. Model weight terms are separate.
 
-The conservative ORB release boundary and modification notice are now recorded.
-Required follow-up: verify
-all license texts in any future package/binary. No source clearance is inferred
-from passing numerical tests. See [distribution policy](distribution_policy.md).
+For future packages/binaries, verify the actual bundled components and include
+the required license texts. Numerical parity is not proof of authorship or license
+clearance. See [distribution policy](distribution_policy.md).

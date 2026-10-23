@@ -89,7 +89,7 @@ explicit skips when those models are absent. See [validation scope](docs/VALIDAT
 
 ## Optional build features
 
-The default feature set is empty. `parallel` enables Rayon. `accelerate-blas`
+The default feature set includes `orb`. `parallel` enables Rayon. `accelerate-blas`
 is available on macOS; `openblas`, `intel-mkl` and `libxsmm` have their own
 platform and native-library requirements. Select at most one BLAS provider.
 `embed-model` embeds a model supplied via `LLMLIP_EMBED_MODEL`. Named baked
@@ -103,21 +103,13 @@ cargo test --locked --workspace --features parallel,accelerate-blas
 
 ## License and acknowledgements
 
-Unless a file states otherwise, project code is dual licensed under
-[MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE). The LAMMPS C++ interface
-files are GPL-2.0-only; see [LAMMPS licensing](lammps_plugin/llmlip/README.md#license-and-distribution).
-This exception does not relicense the standalone Rust library. Third-party
-components and models retain their own terms; see [third-party notices](THIRD_PARTY_LICENSES.md).
+Original contributions are dual licensed under [MIT](LICENSE-MIT) or
+[Apache-2.0](LICENSE-APACHE), subject to file-specific exceptions and retained
+third-party conditions. The ORB runtime module is Apache-2.0; the three LAMMPS
+C++ interface files are GPL-2.0-only. Use the separate no-ORB build for LAMMPS.
+See [ORB license scope](docs/ORB_LICENSE_SCOPE.md), [third-party notices](THIRD_PARTY_LICENSES.md),
+[numerical helper notices](LICENSE-THIRD-PARTY), and [source provenance](docs/SOURCE_PROVENANCE.md).
+Model-weight licenses are separate from the source-code license.
 
 Developed by Wataru Mizukami, Do Tuan Minh and Kenji Ishihara.
 Supported by JST COI-NEXT “Quantum Software Research Hub”, JPMJPF2014.
-
-Implementation sources and unresolved license scope are recorded in the
-[source provenance review](docs/SOURCE_PROVENANCE.md).
-
-## ORB license scope clarification
-
-The ORB implementation module is Apache-2.0; see [scope and notices](docs/ORB_LICENSE_SCOPE.md).
-Original MIT OR Apache-2.0 grants do not override it. The current combined
-LAMMPS plugin is not cleared for redistribution under GPL-2.0-only.
-Only the separately licensed source components are in this release scope.

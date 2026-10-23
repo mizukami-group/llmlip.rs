@@ -24,7 +24,9 @@ llmlip.workspace = true
 thiserror.workspace = true
 
 [features]
-default = []
+default = ["orb"]
+orb = ["llmlip/orb"]
+lammps = ["llmlip/lammps"]
 embed-model = ["llmlip/embed-model"]
 baked-mace-oam-medium = ["llmlip/baked-mace-oam-medium"]
 accelerate-blas = ["llmlip/accelerate-blas"]

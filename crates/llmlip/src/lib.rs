@@ -65,6 +65,7 @@ pub mod neighbor;
 pub mod nequip_lite;
 pub mod nequip_oam_prefix;
 pub mod nequix;
+#[cfg(feature = "orb")]
 pub mod orb_v3_omol;
 pub mod pet_lite;
 pub mod structure;
@@ -118,6 +119,7 @@ pub use neighbor::{
 pub use nequip_lite::{NequipLiteError, NequipLiteModel};
 pub use nequip_oam_prefix::{NequipOamPrefixError, NequipOamPrefixModel};
 pub use nequix::{NequixError, NequixModel};
+#[cfg(feature = "orb")]
 pub use orb_v3_omol::{
     OrbV3OmolEncodedFeatures, OrbV3OmolEnergyBreakdown, OrbV3OmolEnergyTailVjp, OrbV3OmolError,
     OrbV3OmolGnnInputCotangents, OrbV3OmolGnnLayerOutput, OrbV3OmolGnnOutput,
@@ -135,3 +137,6 @@ pub use structure::{
 pub use synthetic::{SyntheticModelError, SyntheticRadialModel};
 pub use synthetic_equivariant::SyntheticEquivariantModel;
 pub use uma_tensor_pack::{uma_tensor_pack_exists, UMA_TENSOR_PACK_FILENAME};
+
+#[cfg(all(feature = "orb", feature = "lammps"))]
+compile_error!("LAMMPS builds must exclude ORB: use --no-default-features --features lammps in a separate Cargo build");

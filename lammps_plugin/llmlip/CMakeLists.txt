@@ -31,9 +31,22 @@ if(LLMLIP_LAMMPS_USE_STUBS)
   target_include_directories(lammps_llmlipplugin PRIVATE "${LAMMPS_SOURCE_DIR}/src/STUBS")
 endif()
 
-if(LLMLIP_CAPI_LIBRARY)
-  target_link_libraries(lammps_llmlipplugin PRIVATE "${LLMLIP_CAPI_LIBRARY}")
+if(NOT LLMLIP_CAPI_LIBRARY)
+  message(FATAL_ERROR "Set LLMLIP_CAPI_LIBRARY to a C ABI library built with --no-default-features --features lammps")
 endif()
+
+# Check the actual supplied library, not a user assertion about its Cargo flags.
+include(CheckCXXSourceCompiles)
+set(CMAKE_REQUIRED_LIBRARIES "${LLMLIP_CAPI_LIBRARY}")
+unset(LLMLIP_HAS_NO_ORB_MARKER CACHE)
+check_cxx_source_compiles(
+  "extern \"C\" void llmlip_lammps_no_orb_build(void); int main() { llmlip_lammps_no_orb_build(); }"
+  LLMLIP_HAS_NO_ORB_MARKER)
+unset(CMAKE_REQUIRED_LIBRARIES)
+if(NOT LLMLIP_HAS_NO_ORB_MARKER)
+  message(FATAL_ERROR "The supplied C ABI library lacks the LAMMPS/no-ORB marker or cannot be linked. Build llmlip-capi separately with --no-default-features --features lammps; do not link an ORB-enabled library.")
+endif()
+target_link_libraries(lammps_llmlipplugin PRIVATE "${LLMLIP_CAPI_LIBRARY}")
 
 if(APPLE)
   target_link_options(lammps_llmlipplugin PRIVATE "-Wl,-undefined,dynamic_lookup")

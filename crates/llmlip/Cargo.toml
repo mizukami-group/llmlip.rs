@@ -35,7 +35,9 @@ sha2.workspace = true
 toml.workspace = true
 
 [features]
-default = []
+default = ["orb"]
+orb = []
+lammps = []
 embed-model = []
 baked-mace-model = []
 baked-dftd3-pbe-bj = []
@@ -62,10 +64,10 @@ openblas = ["e3nn-core/openblas"]
 armpl = ["openblas"]
 libxsmm = []
 small-gemm-bypass = []
-orb-profile-breakdown = []
-orb-fixed-shape-dense = ["intel-mkl"]
+orb-profile-breakdown = ["orb"]
+orb-fixed-shape-dense = ["orb", "intel-mkl"]
 orb-fixed-shape-dense-pack-a = ["orb-fixed-shape-dense"]
-orb-f32-edge-mlp = []
+orb-f32-edge-mlp = ["orb"]
 parallel = ["dep:rayon", "e3nn-core/parallel", "gemm/rayon", "gemm/x86-v4"]
 mimalloc = ["dep:mimalloc"]
 parallel-blas = ["parallel", "accelerate-blas"]
@@ -83,3 +85,7 @@ harness = false
 name = "mace"
 harness = false
 
+
+[[example]]
+name = "profile_orb_v3_omol"
+required-features = ["orb"]

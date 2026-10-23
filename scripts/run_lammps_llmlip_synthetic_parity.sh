@@ -27,7 +27,7 @@ fi
 
 if [[ ! -f "${plugin}" ]]; then
   echo "llmlip LAMMPS plugin not found: ${plugin}" >&2
-  echo "Build it with: cargo build -p llmlip-capi && cmake -S lammps_plugin/llmlip -B target/lammps-llmlip-plugin -DLLMLIP_CAPI_LIBRARY=${repo_root}/target/debug/libllmlip_capi.a && cmake --build target/lammps-llmlip-plugin" >&2
+  echo "Build it with: cargo build -p llmlip-capi --no-default-features --features lammps && cmake -S lammps_plugin/llmlip -B target/lammps-llmlip-plugin -DLLMLIP_CAPI_LIBRARY=${repo_root}/target/debug/libllmlip_capi.a && cmake --build target/lammps-llmlip-plugin" >&2
   exit 2
 fi
 

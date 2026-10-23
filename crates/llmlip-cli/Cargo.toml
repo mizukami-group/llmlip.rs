@@ -137,7 +137,8 @@ serde_json.workspace = true
 mimalloc = { version = "0.1", optional = true }
 
 [features]
-default = []
+default = ["orb"]
+orb = ["llmlip/orb"]
 embed-model = ["llmlip/embed-model"]
 baked-mace-oam-medium = ["llmlip/baked-mace-oam-medium"]
 baked-mace-oam-small = ["llmlip/baked-mace-oam-small"]

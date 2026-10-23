@@ -863,6 +863,12 @@ fn map_prediction_error(error: ModelError) -> CApiError {
     }
 }
 
+/// Link marker for the build that excludes the ORB implementation.
+/// This is a build configuration check, not a general license certification.
+#[cfg(feature = "lammps")]
+#[no_mangle]
+pub extern "C" fn llmlip_lammps_no_orb_build() {}
+
 #[cfg(test)]
 #[allow(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
 mod tests {

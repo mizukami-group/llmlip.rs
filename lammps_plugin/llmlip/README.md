@@ -40,12 +40,12 @@ MPI-style handoff on one rank, request the legacy path explicitly:
 pair_style llmlip model /path/to/model.e3rs dtype f64 rank1_mode external_graph virial fdotr
 ```
 
-For a baked redistribution build, compile `llmlip-capi` with the baked model
+For a local baked-model build (model redistribution requires separate review), compile `llmlip-capi` with the baked model
 feature and omit the model path in the LAMMPS input:
 
 ```bash
-cargo build -p llmlip-capi --release \
-  --features baked-mace-oam-medium,apple-metal,accelerate-blas,parallel
+cargo build -p llmlip-capi --release --no-default-features \
+  --features lammps,baked-mace-oam-medium,apple-metal,accelerate-blas,parallel
 ```
 
 ```lammps
@@ -65,7 +65,7 @@ path.
 Build sketch:
 
 ```bash
-cargo build -p llmlip-capi
+cargo build -p llmlip-capi --no-default-features --features lammps
 cmake -S lammps_plugin/llmlip -B build/lammps-llmlip-plugin \
   -DLAMMPS_SOURCE_DIR="$PWD/third_party/lammps" \
   -DLLMLIP_CAPI_INCLUDE_DIR="$PWD/crates/llmlip-capi/include" \
@@ -124,8 +124,8 @@ The C++ interface files `pair_llmlip.cpp`, `pair_llmlip.h`, and
 text is in [LICENSE-GPL-2.0](LICENSE-GPL-2.0). They directly use LAMMPS headers,
 its Pair API and registration mechanism. This follows the
 [LAMMPS interface licensing guidance](https://docs.lammps.org/stable/Intro_opensource.html).
-Original Rust contributions retain MIT OR Apache-2.0, but the current library
-also contains the Apache-2.0 ORB module. It is not a uniformly MIT-selectable library.
+Original Rust code retains its MIT OR Apache-2.0 choice; the ORB runtime module
+is an Apache-2.0 exception. The LAMMPS build must exclude that module.
 
 This distribution contains source only. It does not include LAMMPS itself or
 a compiled plugin. Obtain LAMMPS separately and retain its notices. Building
@@ -143,15 +143,14 @@ No compiled-plugin redistribution clearance is implied by a successful local bui
 
 ### 日本語
 
-上記3つのC++連携ファイルはGPL-2.0-onlyです。Rustの独自部分はMIT OR Apache-2.0ですが、ORB部分はApache-2.0です。
+上記3つのC++連携ファイルはGPL-2.0-onlyです。Rust自作部分はMIT OR Apache-2.0ですが、ORBモジュールはApache-2.0の例外です。
+LAMMPS向けにはORBを除外した専用ビルドを使います。
 今回の対象はソースのみで、LAMMPS本体やビルド済みプラグインは同梱しません。
 各自のローカルビルド・利用と、結合バイナリの外部配布を区別してください。
 後者ではGPLv2の通知、対応ソースとビルド手順の提供、リンク先ライブラリとモデルの
 条件確認が必要です。動的ロードだけを理由にこれらを省略することはできません。
 
-## ORB license scope clarification
-
-The ORB implementation module is Apache-2.0; see [scope and notices](../../docs/ORB_LICENSE_SCOPE.md).
-Original MIT OR Apache-2.0 grants do not override it. The current combined
-LAMMPS plugin is not cleared for redistribution under GPL-2.0-only.
-Only the separately licensed source components are in this release scope.
+The `lammps` feature and link marker are mandatory for this plugin. Build with
+`--no-default-features --features lammps` in a separate Cargo invocation; combining
+it with `orb` fails at compile time. A separate target directory is recommended
+for deployment. See [ORB scope and distribution](../../docs/ORB_LICENSE_SCOPE.md).

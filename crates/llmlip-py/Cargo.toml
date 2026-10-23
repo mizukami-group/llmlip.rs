@@ -22,7 +22,8 @@ numpy.workspace = true
 pyo3 = { workspace = true, features = ["abi3-py310", "extension-module"] }
 
 [features]
-default = []
+default = ["orb"]
+orb = ["llmlip/orb"]
 extension-module = []
 embed-model = ["llmlip/embed-model"]
 baked-mace-oam-medium = ["llmlip/baked-mace-oam-medium"]

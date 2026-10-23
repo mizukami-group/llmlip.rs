@@ -1,4 +1,9 @@
 //! `.e3rs` model loading for fixed-weight inference.
+#[cfg(feature = "orb")]
+use crate::orb_v3_omol::{
+    self, OrbV3OmolError, OrbV3OmolExternalTensor, OrbV3OmolExternalTensorValues, OrbV3OmolModel,
+    OrbV3OmolPreparedGraph,
+};
 
 use std::{
     collections::{BTreeMap, HashMap, HashSet},
@@ -143,10 +148,6 @@ use crate::{
         NequipOamPrefixPreparedInput,
     },
     nequix::{NequixComputeDtype, NequixError, NequixModel},
-    orb_v3_omol::{
-        self, OrbV3OmolError, OrbV3OmolExternalTensor, OrbV3OmolExternalTensorValues,
-        OrbV3OmolModel, OrbV3OmolPreparedGraph,
-    },
     pet_lite::{
         PetLiteBatch, PetLiteError, PetLiteExternalTensor, PetLiteModel,
         PetLitePreparedBatchWorkspace, PetLiteProfile,
@@ -169,7 +170,7 @@ const MACE_LITE_V1: &str = "mace-lite-v1";
 const MACE_MH1_V1: &str = "mace-mh1-v1";
 const MACE_POLAR_V1: &str = "mace-polar-v1";
 const ALLEGRO_OAM_L_V1: &str = "allegro-oam-l-v1";
-const ORB_V3_CONSERVATIVE_OMOL_V1: &str = orb_v3_omol::ARCHITECTURE;
+const ORB_V3_CONSERVATIVE_OMOL_V1: &str = "orb-v3-conservative-omol-v1";
 const PET_LITE_V1: &str = "pet-lite-v1";
 const ESEN_OAM_V1: &str = "esen-oam-v1";
 const UMA_V1: &str = "uma-v1";
@@ -567,6 +568,7 @@ pub enum LlmlipModel {
     MaceMh1(Box<MaceMh1Model>),
     MacePolar(Box<MacePolarModel>),
     AllegroOam(Box<AllegroOamModel>),
+    #[cfg(feature = "orb")]
     OrbV3Omol(Box<OrbV3OmolModel>),
     PetLite(Box<PetLiteModel>),
     EsenOam(Box<EsenOamModel>),
@@ -583,6 +585,7 @@ pub enum PreparedPredictionInput {
     MaceMh1(Box<MaceMh1PreparedInput>),
     MacePolar(Box<MacePolarPreparedInput>),
     NequipOamPrefix(Box<NequipOamPrefixPreparedInput>),
+    #[cfg(feature = "orb")]
     OrbV3Omol(Box<OrbV3OmolPreparedGraph>),
     PetLite {
         batch: Box<PetLiteBatch>,
@@ -733,6 +736,7 @@ impl PreparedPredictionInput {
             Self::MaceMh1(prepared) => prepared.atom_count(),
             Self::MacePolar(prepared) => prepared.atom_count(),
             Self::NequipOamPrefix(prepared) => prepared.atom_count(),
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(graph) => graph.atom_count(),
             Self::PetLite { batch, .. } => batch.n_atoms,
             Self::Uma(prepared) => prepared.atom_count(),
@@ -748,6 +752,7 @@ impl PreparedPredictionInput {
             Self::MaceMh1(prepared) => prepared.edge_count(),
             Self::MacePolar(prepared) => prepared.edge_count(),
             Self::NequipOamPrefix(prepared) => prepared.edge_count(),
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(graph) => graph.edge_count(),
             Self::PetLite { batch, .. } => batch
                 .padding_mask
@@ -886,6 +891,7 @@ impl LlmlipModel {
             )
             .with_full_pbc_only()
             .with_global_virial_stress(),
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(model) => ExternalGraphModelCapabilities::new(
                 ORB_V3_CONSERVATIVE_OMOL_V1,
                 model.cutoff_angstrom(),
@@ -1016,6 +1022,7 @@ impl LlmlipModel {
             Self::MaceMh1(model) => model.predict(structure, options).map_err(Into::into),
             Self::MacePolar(model) => model.predict(structure, options).map_err(Into::into),
             Self::AllegroOam(model) => model.predict(structure, options).map_err(Into::into),
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(model) => model.predict(structure, options).map_err(Into::into),
             Self::PetLite(model) => model.predict(structure, options).map_err(Into::into),
             Self::EsenOam(model) => model.predict(structure, options),
@@ -1050,6 +1057,7 @@ impl LlmlipModel {
                 Self::MaceMh1(model) => model.predict(structure, options).map_err(Into::into),
                 Self::MacePolar(model) => model.predict(structure, options).map_err(Into::into),
                 Self::AllegroOam(model) => model.predict(structure, options).map_err(Into::into),
+                #[cfg(feature = "orb")]
                 Self::OrbV3Omol(model) => model.predict(structure, options).map_err(Into::into),
                 Self::PetLite(model) => model.predict(structure, options).map_err(Into::into),
                 Self::EsenOam(model) => model.predict(structure, options),
@@ -1078,6 +1086,7 @@ impl LlmlipModel {
             Self::PetLite(model) => model
                 .predict_with_compute_dtype(structure, options, dtype)
                 .map_err(Into::into),
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(model) => model
                 .predict_with_compute_dtype(structure, options, dtype)
                 .map_err(Into::into),
@@ -1230,9 +1239,14 @@ impl LlmlipModel {
             | Self::Nequix(_)
             | Self::MacePolar(_)
             | Self::AllegroOam(_)
-            | Self::OrbV3Omol(_)
             | Self::PetLite(_)
             | Self::EsenOam(_) => Err(ModelError::UnsupportedPredictionHead {
+                architecture: self.architecture_name().to_owned(),
+                head: selected_head.to_owned(),
+                supported_heads: Vec::new(),
+            }),
+            #[cfg(feature = "orb")]
+            Self::OrbV3Omol(_) => Err(ModelError::UnsupportedPredictionHead {
                 architecture: self.architecture_name().to_owned(),
                 head: selected_head.to_owned(),
                 supported_heads: Vec::new(),
@@ -1259,6 +1273,7 @@ impl LlmlipModel {
             Self::MaceLite(model) => Ok(PreparedPredictionInput::MaceLite(Box::new(
                 model.prepare_prediction_input(structure)?,
             ))),
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(model) => {
                 let (total_charge, spin_multiplicity) =
                     orb_v3_omol::charge_spin_from_prediction_options(options)?;
@@ -1329,6 +1344,7 @@ impl LlmlipModel {
                     PredictionComputeDtype::Float64,
                 )
                 .map_err(Into::into),
+            #[cfg(feature = "orb")]
             (Self::OrbV3Omol(model), PreparedPredictionInput::OrbV3Omol(graph)) => {
                 model.predict_prepared(graph, options).map_err(Into::into)
             }
@@ -1399,6 +1415,7 @@ impl LlmlipModel {
             (Self::PetLite(model), PreparedPredictionInput::PetLite { batch, cell }) => model
                 .predict_for_batch_with_compute_dtype(batch, cell.as_ref(), options, dtype)
                 .map_err(Into::into),
+            #[cfg(feature = "orb")]
             (Self::OrbV3Omol(model), PreparedPredictionInput::OrbV3Omol(prepared)) => model
                 .predict_prepared_with_compute_dtype(prepared, options, dtype)
                 .map_err(Into::into),
@@ -1476,6 +1493,7 @@ impl LlmlipModel {
     #[must_use]
     pub fn prediction_input_requirements(&self) -> PredictionInputRequirements {
         match self {
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(_) => PredictionInputRequirements::charge_spin(),
             Self::DispersionCorrected(model) => model.base().prediction_input_requirements(),
             Self::SyntheticRadial(_)
@@ -1514,9 +1532,10 @@ impl LlmlipModel {
             | Self::Nequix(_)
             | Self::MacePolar(_)
             | Self::AllegroOam(_)
-            | Self::OrbV3Omol(_)
             | Self::PetLite(_)
             | Self::EsenOam(_) => Vec::new(),
+            #[cfg(feature = "orb")]
+            Self::OrbV3Omol(_) => Vec::new(),
         };
         let supported_species = match self {
             Self::NequipLite(model) => model.type_names().to_vec(),
@@ -1526,6 +1545,7 @@ impl LlmlipModel {
             Self::MaceMh1(model) => model.type_names().to_vec(),
             Self::MacePolar(model) => model.type_names().to_vec(),
             Self::AllegroOam(model) => model.type_names().to_vec(),
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(_) => orb_v3_omol::supported_element_symbols(),
             Self::PetLite(model) => model.type_names().to_vec(),
             Self::EsenOam(_) => ESEN_OAM_ELEMENT_SYMBOLS
@@ -1556,6 +1576,7 @@ impl LlmlipModel {
             Self::PetLite(model) => model.has_native_f32_state_tensors(),
             Self::MacePolar(model) => model.supports_float32_prediction(),
             Self::DispersionCorrected(model) => model.base().capabilities().supports_float32,
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(_) => orb_v3_omol::supports_float32_compute_dtype(),
             Self::SyntheticRadial(_)
             | Self::SyntheticEquivariant(_)
@@ -1568,11 +1589,9 @@ impl LlmlipModel {
             Self::Uma(model) => model.runtime_model().is_some(),
         };
         let supports_prepared_input = match self {
-            Self::AllegroOam(_)
-            | Self::MaceLite(_)
-            | Self::OrbV3Omol(_)
-            | Self::MaceMh1(_)
-            | Self::MacePolar(_) => true,
+            Self::AllegroOam(_) | Self::MaceLite(_) | Self::MaceMh1(_) | Self::MacePolar(_) => true,
+            #[cfg(feature = "orb")]
+            Self::OrbV3Omol(_) => true,
             Self::EsenOam(model) => model.runtime_model().is_some(),
             Self::Uma(model) => model.runtime_model().is_some(),
             Self::PetLite(model) => model.state_tensor_count() > 0,
@@ -1611,10 +1630,11 @@ impl LlmlipModel {
             | Self::SyntheticEquivariant(_)
             | Self::MaceMh1(_)
             | Self::MacePolar(_)
-            | Self::OrbV3Omol(_)
             | Self::PetLite(_)
             | Self::EsenOam(_)
             | Self::Uma(_) => (false, false),
+            #[cfg(feature = "orb")]
+            Self::OrbV3Omol(_) => (false, false),
         };
 
         ModelCapabilities {
@@ -1645,6 +1665,7 @@ impl LlmlipModel {
             Self::MaceMh1(_) => MACE_MH1_V1,
             Self::MacePolar(_) => MACE_POLAR_V1,
             Self::AllegroOam(_) => ALLEGRO_OAM_L_V1,
+            #[cfg(feature = "orb")]
             Self::OrbV3Omol(_) => ORB_V3_CONSERVATIVE_OMOL_V1,
             Self::PetLite(_) => PET_LITE_V1,
             Self::EsenOam(_) => ESEN_OAM_V1,
@@ -1858,6 +1879,7 @@ pub fn load_llmlip_model(path: impl AsRef<Path>) -> Result<LlmlipModel, ModelErr
             validate_allegro_oam_manifest_model_compatibility(&manifest, allegro, &model)?;
             Ok(LlmlipModel::AllegroOam(Box::new(model)))
         }
+        #[cfg(feature = "orb")]
         ORB_V3_CONSERVATIVE_OMOL_V1 => {
             let orb = manifest
                 .orb_v3_omol
@@ -2116,6 +2138,7 @@ pub enum ModelError {
     AllegroOam(#[from] AllegroOamError),
 
     #[error(transparent)]
+    #[cfg(feature = "orb")]
     OrbV3Omol(#[from] OrbV3OmolError),
 
     #[error(transparent)]
@@ -2277,6 +2300,8 @@ struct AllegroOamSection {
 
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
+// Retain schema validation even when the runtime is excluded.
+#[cfg_attr(not(feature = "orb"), allow(dead_code))]
 struct OrbV3OmolSection {
     model: PathBuf,
     reference_package: String,
@@ -33589,6 +33614,7 @@ fn validate_manifest(manifest: &Manifest) -> Result<(), ModelError> {
             })?;
             validate_allegro_oam_manifest(manifest, allegro)?;
         }
+        #[cfg(feature = "orb")]
         ORB_V3_CONSERVATIVE_OMOL_V1 => {
             reject_nequix_section_for_architecture(manifest)?;
             if manifest.synthetic_radial.is_some() {
@@ -34382,6 +34408,7 @@ fn validate_allegro_oam_manifest_model_compatibility(
     Ok(())
 }
 
+#[cfg(feature = "orb")]
 fn validate_orb_v3_omol_manifest(
     manifest: &Manifest,
     orb: &OrbV3OmolSection,
@@ -34462,6 +34489,7 @@ fn validate_orb_v3_omol_manifest(
     Ok(())
 }
 
+#[cfg(feature = "orb")]
 fn validate_orb_v3_omol_manifest_model_compatibility(
     manifest: &Manifest,
     orb: &OrbV3OmolSection,
@@ -35468,6 +35496,7 @@ fn load_mace_mh1_external_tensors(
     Ok(tensors)
 }
 
+#[cfg(feature = "orb")]
 fn load_orb_v3_omol_external_tensors(
     root: &Path,
     specs: &[TensorSpec],
@@ -35544,6 +35573,7 @@ fn validate_tensor_spec(spec: &TensorSpec) -> Result<(), ModelError> {
     Ok(())
 }
 
+#[cfg(feature = "orb")]
 fn validate_orb_v3_omol_tensor_spec(spec: &TensorSpec) -> Result<(), ModelError> {
     orb_v3_omol_tensor_dtype_size(&spec.dtype).map_err(|_| {
         invalid_manifest(format!(
@@ -35646,6 +35676,7 @@ fn mace_mh1_tensor_dtype_size(dtype: &str) -> Result<usize, ModelError> {
     }
 }
 
+#[cfg(feature = "orb")]
 fn orb_v3_omol_tensor_dtype_size(dtype: &str) -> Result<usize, ModelError> {
     match dtype {
         DTYPE_F64 => Ok(std::mem::size_of::<f64>()),
@@ -35680,6 +35711,7 @@ fn decode_tensor_values(dtype: &str, bytes: &[u8]) -> Result<Vec<f64>, ModelErro
     }
 }
 
+#[cfg(feature = "orb")]
 fn decode_orb_v3_omol_tensor_values(
     dtype: &str,
     bytes: &[u8],

@@ -24,6 +24,7 @@ using namespace LAMMPS_NS;
 
 PairLlmlip::PairLlmlip(LAMMPS *lmp) : Pair(lmp)
 {
+  llmlip_lammps_no_orb_build();
   single_enable = 0;
   restartinfo = 0;
   one_coeff = 1;

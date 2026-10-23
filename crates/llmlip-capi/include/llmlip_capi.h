@@ -145,6 +145,10 @@ llmlip_status_t llmlip_predict_structure(
 const char *llmlip_last_error(void);
 void llmlip_clear_error(void);
 
+/* Present only in --no-default-features --features lammps builds.
+ * A link-time configuration marker; not a general license certification. */
+void llmlip_lammps_no_orb_build(void);
+
 #ifdef __cplusplus
 }
 #endif
