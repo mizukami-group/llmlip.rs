@@ -1,0 +1,85 @@
+[package]
+name = "llmlip"
+version = "0.0.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+e3nn-core.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+toml.workspace = true
+bytemuck = { version = "1", features = ["extern_crate_std"] }
+gemm = { version = "0.19", default-features = false, features = ["std"] }
+libm = "0.2"
+rayon = { workspace = true, optional = true }
+wide = "1.5"
+mimalloc = { version = "0.1", optional = true }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+metal = { version = "0.33", default-features = false, features = ["link"], optional = true }
+
+[dev-dependencies]
+criterion.workspace = true
+
+[build-dependencies]
+serde_json.workspace = true
+sha2.workspace = true
+toml.workspace = true
+
+[features]
+default = []
+embed-model = []
+baked-mace-model = []
+baked-dftd3-pbe-bj = []
+baked-mace-oam-medium = ["baked-mace-model"]
+baked-mace-oam-small = ["baked-mace-model"]
+baked-mace-mp0b = ["baked-mace-model"]
+baked-mace-osaka24-small = ["baked-mace-model"]
+baked-mace-osaka24-medium = ["baked-mace-model"]
+baked-mace-osaka24-large = ["baked-mace-model"]
+baked-mace-osaka26 = ["baked-mace-model"]
+baked-mace-all = [
+    "baked-mace-oam-medium",
+    "baked-mace-oam-small",
+    "baked-mace-mp0b",
+    "baked-mace-osaka24-small",
+    "baked-mace-osaka24-medium",
+    "baked-mace-osaka24-large",
+    "baked-mace-osaka26",
+]
+accelerate-blas = ["e3nn-core/accelerate-blas"]
+intel-mkl = ["e3nn-core/intel-mkl"]
+intel-mkl-threaded = ["intel-mkl"]
+openblas = ["e3nn-core/openblas"]
+armpl = ["openblas"]
+libxsmm = []
+small-gemm-bypass = []
+orb-profile-breakdown = []
+orb-fixed-shape-dense = ["intel-mkl"]
+orb-fixed-shape-dense-pack-a = ["orb-fixed-shape-dense"]
+orb-f32-edge-mlp = []
+parallel = ["dep:rayon", "e3nn-core/parallel", "gemm/rayon", "gemm/x86-v4"]
+mimalloc = ["dep:mimalloc"]
+parallel-blas = ["parallel", "accelerate-blas"]
+apple-metal = ["dep:metal"]
+
+[[bench]]
+name = "synthetic_model"
+harness = false
+
+[[bench]]
+name = "representative_models"
+harness = false
+
+[[bench]]
+name = "mace"
+harness = false
+

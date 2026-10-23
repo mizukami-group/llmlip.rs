@@ -1,0 +1,170 @@
+[package]
+name = "llmlip-cli"
+default-run = "llmlip"
+version = "0.0.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "llmlip"
+path = "src/main.rs"
+
+[[bin]]
+name = "llmlip-mace-oam-medium-baked"
+path = "src/bin/llmlip-mace-oam-medium-baked.rs"
+required-features = ["baked-mace-oam-medium"]
+
+[[bin]]
+name = "llmlip-mace-oam-medium-fp64-baked"
+path = "src/bin/llmlip-mace-oam-medium-fp64-baked.rs"
+required-features = ["baked-mace-oam-medium"]
+
+[[bin]]
+name = "llmlip-mace-oam-medium-fp32-baked"
+path = "src/bin/llmlip-mace-oam-medium-fp32-baked.rs"
+required-features = ["baked-mace-oam-medium"]
+
+[[bin]]
+name = "llmlip-mace-oam-small-baked"
+path = "src/bin/llmlip-mace-oam-small-baked.rs"
+required-features = ["baked-mace-oam-small"]
+
+[[bin]]
+name = "llmlip-mace-oam-small-fp64-baked"
+path = "src/bin/llmlip-mace-oam-small-fp64-baked.rs"
+required-features = ["baked-mace-oam-small"]
+
+[[bin]]
+name = "llmlip-mace-oam-small-fp32-baked"
+path = "src/bin/llmlip-mace-oam-small-fp32-baked.rs"
+required-features = ["baked-mace-oam-small"]
+
+[[bin]]
+name = "llmlip-mace-mp0b-baked"
+path = "src/bin/llmlip-mace-mp0b-baked.rs"
+required-features = ["baked-mace-mp0b"]
+
+[[bin]]
+name = "llmlip-mace-mp0b-fp64-baked"
+path = "src/bin/llmlip-mace-mp0b-fp64-baked.rs"
+required-features = ["baked-mace-mp0b"]
+
+[[bin]]
+name = "llmlip-mace-mp0b-fp32-baked"
+path = "src/bin/llmlip-mace-mp0b-fp32-baked.rs"
+required-features = ["baked-mace-mp0b"]
+
+[[bin]]
+name = "llmlip-mace-osaka24-small-baked"
+path = "src/bin/llmlip-mace-osaka24-small-baked.rs"
+required-features = ["baked-mace-osaka24-small"]
+
+[[bin]]
+name = "llmlip-mace-osaka24-small-fp64-baked"
+path = "src/bin/llmlip-mace-osaka24-small-fp64-baked.rs"
+required-features = ["baked-mace-osaka24-small"]
+
+[[bin]]
+name = "llmlip-mace-osaka24-small-fp32-baked"
+path = "src/bin/llmlip-mace-osaka24-small-fp32-baked.rs"
+required-features = ["baked-mace-osaka24-small"]
+
+[[bin]]
+name = "llmlip-mace-osaka24-medium-baked"
+path = "src/bin/llmlip-mace-osaka24-medium-baked.rs"
+required-features = ["baked-mace-osaka24-medium"]
+
+[[bin]]
+name = "llmlip-mace-osaka24-medium-fp64-baked"
+path = "src/bin/llmlip-mace-osaka24-medium-fp64-baked.rs"
+required-features = ["baked-mace-osaka24-medium"]
+
+[[bin]]
+name = "llmlip-mace-osaka24-medium-fp32-baked"
+path = "src/bin/llmlip-mace-osaka24-medium-fp32-baked.rs"
+required-features = ["baked-mace-osaka24-medium"]
+
+[[bin]]
+name = "llmlip-mace-osaka24-large-baked"
+path = "src/bin/llmlip-mace-osaka24-large-baked.rs"
+required-features = ["baked-mace-osaka24-large"]
+
+[[bin]]
+name = "llmlip-mace-osaka24-large-fp64-baked"
+path = "src/bin/llmlip-mace-osaka24-large-fp64-baked.rs"
+required-features = ["baked-mace-osaka24-large"]
+
+[[bin]]
+name = "llmlip-mace-osaka24-large-fp32-baked"
+path = "src/bin/llmlip-mace-osaka24-large-fp32-baked.rs"
+required-features = ["baked-mace-osaka24-large"]
+
+[[bin]]
+name = "llmlip-mace-osaka26-baked"
+path = "src/bin/llmlip-mace-osaka26-baked.rs"
+required-features = ["baked-mace-osaka26"]
+
+[[bin]]
+name = "llmlip-mace-osaka26-fp64-baked"
+path = "src/bin/llmlip-mace-osaka26-fp64-baked.rs"
+required-features = ["baked-mace-osaka26"]
+
+[[bin]]
+name = "llmlip-mace-osaka26-fp32-baked"
+path = "src/bin/llmlip-mace-osaka26-fp32-baked.rs"
+required-features = ["baked-mace-osaka26"]
+
+[[bin]]
+name = "llmlip-mace-baked"
+path = "src/bin/llmlip-mace-baked.rs"
+required-features = ["baked-mace-all"]
+
+[[bin]]
+name = "llmlip-dftd3-pbe-bj-baked"
+path = "src/bin/llmlip-dftd3-pbe-bj-baked.rs"
+required-features = ["baked-dftd3-pbe-bj"]
+
+[dependencies]
+clap.workspace = true
+llmlip.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+mimalloc = { version = "0.1", optional = true }
+
+[features]
+default = []
+embed-model = ["llmlip/embed-model"]
+baked-mace-oam-medium = ["llmlip/baked-mace-oam-medium"]
+baked-mace-oam-small = ["llmlip/baked-mace-oam-small"]
+baked-mace-mp0b = ["llmlip/baked-mace-mp0b"]
+baked-mace-osaka24-small = ["llmlip/baked-mace-osaka24-small"]
+baked-mace-osaka24-medium = ["llmlip/baked-mace-osaka24-medium"]
+baked-mace-osaka24-large = ["llmlip/baked-mace-osaka24-large"]
+baked-mace-osaka26 = ["llmlip/baked-mace-osaka26"]
+baked-dftd3-pbe-bj = ["llmlip/baked-dftd3-pbe-bj"]
+baked-mace-all = [
+    "baked-mace-oam-medium",
+    "baked-mace-oam-small",
+    "baked-mace-mp0b",
+    "baked-mace-osaka24-small",
+    "baked-mace-osaka24-medium",
+    "baked-mace-osaka24-large",
+    "baked-mace-osaka26",
+]
+accelerate-blas = ["llmlip/accelerate-blas"]
+parallel-blas = ["llmlip/parallel-blas"]
+apple-metal = ["llmlip/apple-metal"]
+intel-mkl = ["llmlip/intel-mkl"]
+intel-mkl-threaded = ["llmlip/intel-mkl-threaded"]
+openblas = ["llmlip/openblas"]
+armpl = ["llmlip/armpl"]
+libxsmm = ["llmlip/libxsmm"]
+small-gemm-bypass = ["llmlip/small-gemm-bypass"]
+orb-f32-edge-mlp = ["llmlip/orb-f32-edge-mlp"]
+parallel = ["llmlip/parallel"]
+mimalloc = ["dep:mimalloc"]

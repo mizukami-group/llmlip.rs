@@ -1,0 +1,42 @@
+[workspace]
+members = [
+    "crates/llmlip",
+    "crates/llmlip-capi",
+    "crates/llmlip-cli",
+    "crates/llmlip-py",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+rust-version = "1.89"
+license = "(MIT OR Apache-2.0) AND Apache-2.0 AND BSD-3-Clause AND Zlib"
+repository = "https://github.com/mizukami-group/llmlip.rs"
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+
+[workspace.lints.clippy]
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"
+todo = "warn"
+indexing_slicing = "allow"
+
+[workspace.dependencies]
+e3nn-core = { git = "https://github.com/mizukami-group/e3nn-core-rs", rev = "9da369cf1d854da6af1a46928bc953c7966e9382" }
+llmlip = { path = "crates/llmlip", default-features = false }
+thiserror = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+clap = { version = "4", features = ["derive"] }
+criterion = "0.5"
+sha2 = "0.10"
+rayon = "1"
+pyo3 = "0.28.3"
+numpy = "0.28.0"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1

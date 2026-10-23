@@ -1,0 +1,4006 @@
+{
+  "artifact": {
+    "binary_tracked_by_git": false,
+    "path": "outputs/reference-artifacts/pet/pet-mad-s-v1.5.0.ckpt",
+    "sha256": "9f55849d1e757ceefdd2d7ebd2374b543d7fdb8972d0b96fb9bc890eff3b6029",
+    "size_bytes": 110353539
+  },
+  "artifact_manifest": "fixtures/pet/v0_2_3_1f0b65c9/pet_mad_s_1_5_artifact_manifest.json",
+  "environment": {
+    "dependency_versions": {
+      "metatomic-ase": "0.1.0",
+      "metatomic-torch": "0.1.11",
+      "metatrain": "2026.2.1",
+      "numpy": "2.4.6",
+      "torch": "2.10.0",
+      "upet": "0.2.3"
+    },
+    "python_version": "3.11.15",
+    "torch_version": "2.10.0",
+    "upet_file": "third_party/upet/src/upet/__init__.py"
+  },
+  "export_block_report": {
+    "next_slices": [
+      "export model capability and output metadata",
+      "generate non-PBC PET-MAD-1.5 energy and conservative force fixtures",
+      "define the exact pet-lite-v1 tensor manifest from inspected tensors"
+    ],
+    "ready_for_pet_lite_export": false,
+    "remaining_limitations": [
+      "full exported metatomic AtomisticModel output semantics are not yet converted to `.e3rs`",
+      "adaptive-neighbor tie-breaking must be pinned against upstream execution",
+      "energy/force/stress fixture generation is still required before Rust runtime support"
+    ],
+    "status": "reference_inspection_only"
+  },
+  "model_summary": {
+    "buffer_numel": 1579914,
+    "class_histogram": {
+      "AttentionBlock": 3,
+      "BaseCompositionModel": 1,
+      "BaseScaler": 1,
+      "CartesianTransformer": 3,
+      "CompositionModel": 1,
+      "DummyLongRangeFeaturizer": 1,
+      "DummyModule": 1,
+      "Embedding": 4,
+      "FeedForward": 6,
+      "Identity": 6,
+      "LLPRUncertaintyModel": 1,
+      "LayerNorm": 3,
+      "Linear": 58,
+      "ModuleDict": 11,
+      "ModuleList": 20,
+      "PET": 1,
+      "RMSNorm": 9,
+      "Scaler": 1,
+      "Sequential": 12,
+      "SiLU": 18,
+      "Transformer": 3,
+      "TransformerLayer": 3
+    },
+    "module_count": 167,
+    "modules": [
+      {
+        "child_count": 2,
+        "class": "LLPRUncertaintyModel",
+        "direct_buffer_numel": 1572867,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.llpr.model",
+        "name": ""
+      },
+      {
+        "child_count": 12,
+        "class": "PET",
+        "direct_buffer_numel": 103,
+        "direct_parameter_numel": 0,
+        "extra": {
+          "cutoff": "8.0",
+          "num_heads": "8",
+          "outputs": "{'features': <torch.ScriptObject object at 0xbce288780>, 'energy': <torch.ScriptObject object at 0xbce2890a0>, 'mtt::aux::energy_last_layer_features': <torch.ScriptObject object at 0xbce289080>, 'non_conservative_forces': <torch.ScriptObject object at 0xbce288e40>, 'mtt::aux::non_conservative_forces_last_layer_features': <torch.ScriptObject object at 0xbce288f70>, 'non_conservative_stress': <torch.ScriptObject object at 0xbce288880>, 'mtt::aux::non_conservative_stress_last_layer_features': <torch.ScriptObject object at 0xbce288b30>}"
+        },
+        "module": "metatrain.pet.model",
+        "name": "model"
+      },
+      {
+        "child_count": 3,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.gnn_layers"
+      },
+      {
+        "child_count": 4,
+        "class": "CartesianTransformer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {
+          "cutoff": "8.0"
+        },
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.0"
+      },
+      {
+        "child_count": 1,
+        "class": "Transformer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.0.trans"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.gnn_layers.0.trans.layers"
+      },
+      {
+        "child_count": 8,
+        "class": "TransformerLayer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.0.trans.layers.0"
+      },
+      {
+        "child_count": 2,
+        "class": "AttentionBlock",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {
+          "num_heads": "8"
+        },
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.0.trans.layers.0.attention"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 197376,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.attention.input_linear"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.attention.output_linear"
+      },
+      {
+        "child_count": 0,
+        "class": "RMSNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 256,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.gnn_layers.0.trans.layers.0.norm_attention"
+      },
+      {
+        "child_count": 0,
+        "class": "RMSNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 256,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.gnn_layers.0.trans.layers.0.norm_mlp"
+      },
+      {
+        "child_count": 3,
+        "class": "FeedForward",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.0.trans.layers.0.mlp"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 263168,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.mlp.w_in"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 131328,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.mlp.w_out"
+      },
+      {
+        "child_count": 0,
+        "class": "Identity",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.mlp.activation"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 262400,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.center_contraction"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 263168,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.center_expansion"
+      },
+      {
+        "child_count": 0,
+        "class": "RMSNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 1024,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.gnn_layers.0.trans.layers.0.norm_center_features"
+      },
+      {
+        "child_count": 3,
+        "class": "FeedForward",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.0.trans.layers.0.center_mlp"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 4198400,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.center_mlp.w_in"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 2098176,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.center_mlp.w_out"
+      },
+      {
+        "child_count": 0,
+        "class": "Identity",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.trans.layers.0.center_mlp.activation"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 1280,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.edge_embedder"
+      },
+      {
+        "child_count": 3,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.gnn_layers.0.compress"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 131328,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.compress.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.gnn_layers.0.compress.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.0.compress.2"
+      },
+      {
+        "child_count": 0,
+        "class": "DummyModule",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.utilities",
+        "name": "model.gnn_layers.0.neighbor_embedder"
+      },
+      {
+        "child_count": 4,
+        "class": "CartesianTransformer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {
+          "cutoff": "8.0"
+        },
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.1"
+      },
+      {
+        "child_count": 1,
+        "class": "Transformer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.1.trans"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.gnn_layers.1.trans.layers"
+      },
+      {
+        "child_count": 8,
+        "class": "TransformerLayer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.1.trans.layers.0"
+      },
+      {
+        "child_count": 2,
+        "class": "AttentionBlock",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {
+          "num_heads": "8"
+        },
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.1.trans.layers.0.attention"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 197376,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.attention.input_linear"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.attention.output_linear"
+      },
+      {
+        "child_count": 0,
+        "class": "RMSNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 256,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.gnn_layers.1.trans.layers.0.norm_attention"
+      },
+      {
+        "child_count": 0,
+        "class": "RMSNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 256,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.gnn_layers.1.trans.layers.0.norm_mlp"
+      },
+      {
+        "child_count": 3,
+        "class": "FeedForward",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.1.trans.layers.0.mlp"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 263168,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.mlp.w_in"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 131328,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.mlp.w_out"
+      },
+      {
+        "child_count": 0,
+        "class": "Identity",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.mlp.activation"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 262400,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.center_contraction"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 263168,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.center_expansion"
+      },
+      {
+        "child_count": 0,
+        "class": "RMSNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 1024,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.gnn_layers.1.trans.layers.0.norm_center_features"
+      },
+      {
+        "child_count": 3,
+        "class": "FeedForward",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.1.trans.layers.0.center_mlp"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 4198400,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.center_mlp.w_in"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 2098176,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.center_mlp.w_out"
+      },
+      {
+        "child_count": 0,
+        "class": "Identity",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.trans.layers.0.center_mlp.activation"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 1280,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.edge_embedder"
+      },
+      {
+        "child_count": 3,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.gnn_layers.1.compress"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 196864,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.compress.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.gnn_layers.1.compress.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.1.compress.2"
+      },
+      {
+        "child_count": 0,
+        "class": "Embedding",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 26112,
+        "extra": {},
+        "module": "torch.nn.modules.sparse",
+        "name": "model.gnn_layers.1.neighbor_embedder"
+      },
+      {
+        "child_count": 4,
+        "class": "CartesianTransformer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {
+          "cutoff": "8.0"
+        },
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.2"
+      },
+      {
+        "child_count": 1,
+        "class": "Transformer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.2.trans"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.gnn_layers.2.trans.layers"
+      },
+      {
+        "child_count": 8,
+        "class": "TransformerLayer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.2.trans.layers.0"
+      },
+      {
+        "child_count": 2,
+        "class": "AttentionBlock",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {
+          "num_heads": "8"
+        },
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.2.trans.layers.0.attention"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 197376,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.attention.input_linear"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.attention.output_linear"
+      },
+      {
+        "child_count": 0,
+        "class": "RMSNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 256,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.gnn_layers.2.trans.layers.0.norm_attention"
+      },
+      {
+        "child_count": 0,
+        "class": "RMSNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 256,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.gnn_layers.2.trans.layers.0.norm_mlp"
+      },
+      {
+        "child_count": 3,
+        "class": "FeedForward",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.2.trans.layers.0.mlp"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 263168,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.mlp.w_in"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 131328,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.mlp.w_out"
+      },
+      {
+        "child_count": 0,
+        "class": "Identity",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.mlp.activation"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 262400,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.center_contraction"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 263168,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.center_expansion"
+      },
+      {
+        "child_count": 0,
+        "class": "RMSNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 1024,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.gnn_layers.2.trans.layers.0.norm_center_features"
+      },
+      {
+        "child_count": 3,
+        "class": "FeedForward",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.pet.modules.transformer",
+        "name": "model.gnn_layers.2.trans.layers.0.center_mlp"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 4198400,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.center_mlp.w_in"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 2098176,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.center_mlp.w_out"
+      },
+      {
+        "child_count": 0,
+        "class": "Identity",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.trans.layers.0.center_mlp.activation"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 1280,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.edge_embedder"
+      },
+      {
+        "child_count": 3,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.gnn_layers.2.compress"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 196864,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.compress.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.gnn_layers.2.compress.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.gnn_layers.2.compress.2"
+      },
+      {
+        "child_count": 0,
+        "class": "Embedding",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 26112,
+        "extra": {},
+        "module": "torch.nn.modules.sparse",
+        "name": "model.gnn_layers.2.neighbor_embedder"
+      },
+      {
+        "child_count": 3,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.combination_norms"
+      },
+      {
+        "child_count": 0,
+        "class": "LayerNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 1024,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.combination_norms.0"
+      },
+      {
+        "child_count": 0,
+        "class": "LayerNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 1024,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.combination_norms.1"
+      },
+      {
+        "child_count": 0,
+        "class": "LayerNorm",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 1024,
+        "extra": {},
+        "module": "torch.nn.modules.normalization",
+        "name": "model.combination_norms.2"
+      },
+      {
+        "child_count": 3,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.combination_mlps"
+      },
+      {
+        "child_count": 3,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.combination_mlps.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 262656,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.combination_mlps.0.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.combination_mlps.0.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 131328,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.combination_mlps.0.2"
+      },
+      {
+        "child_count": 3,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.combination_mlps.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 262656,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.combination_mlps.1.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.combination_mlps.1.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 131328,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.combination_mlps.1.2"
+      },
+      {
+        "child_count": 3,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.combination_mlps.2"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 262656,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.combination_mlps.2.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.combination_mlps.2.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 131328,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.combination_mlps.2.2"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_embedders"
+      },
+      {
+        "child_count": 0,
+        "class": "Embedding",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 104448,
+        "extra": {},
+        "module": "torch.nn.modules.sparse",
+        "name": "model.node_embedders.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Embedding",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 26112,
+        "extra": {},
+        "module": "torch.nn.modules.sparse",
+        "name": "model.edge_embedder"
+      },
+      {
+        "child_count": 3,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_heads"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_heads.energy"
+      },
+      {
+        "child_count": 4,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_heads.energy.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 262400,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.node_heads.energy.0.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.node_heads.energy.0.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.node_heads.energy.0.2"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.node_heads.energy.0.3"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_heads.non_conservative_forces"
+      },
+      {
+        "child_count": 4,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_heads.non_conservative_forces.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 262400,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.node_heads.non_conservative_forces.0.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.node_heads.non_conservative_forces.0.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.node_heads.non_conservative_forces.0.2"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.node_heads.non_conservative_forces.0.3"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_heads.non_conservative_stress"
+      },
+      {
+        "child_count": 4,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_heads.non_conservative_stress.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 262400,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.node_heads.non_conservative_stress.0.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.node_heads.non_conservative_stress.0.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.node_heads.non_conservative_stress.0.2"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.node_heads.non_conservative_stress.0.3"
+      },
+      {
+        "child_count": 3,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_heads"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_heads.energy"
+      },
+      {
+        "child_count": 4,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_heads.energy.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.edge_heads.energy.0.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.edge_heads.energy.0.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.edge_heads.energy.0.2"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.edge_heads.energy.0.3"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_heads.non_conservative_forces"
+      },
+      {
+        "child_count": 4,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_heads.non_conservative_forces.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.edge_heads.non_conservative_forces.0.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.edge_heads.non_conservative_forces.0.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.edge_heads.non_conservative_forces.0.2"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.edge_heads.non_conservative_forces.0.3"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_heads.non_conservative_stress"
+      },
+      {
+        "child_count": 4,
+        "class": "Sequential",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_heads.non_conservative_stress.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.edge_heads.non_conservative_stress.0.0"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.edge_heads.non_conservative_stress.0.1"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65792,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.edge_heads.non_conservative_stress.0.2"
+      },
+      {
+        "child_count": 0,
+        "class": "SiLU",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.activation",
+        "name": "model.edge_heads.non_conservative_stress.0.3"
+      },
+      {
+        "child_count": 3,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_last_layers"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_last_layers.energy"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_last_layers.energy.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 257,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.node_last_layers.energy.0.energy___0"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_last_layers.non_conservative_forces"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_last_layers.non_conservative_forces.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 771,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.node_last_layers.non_conservative_forces.0.non_conservative_forces___0"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_last_layers.non_conservative_stress"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.node_last_layers.non_conservative_stress.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 2313,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.node_last_layers.non_conservative_stress.0.non_conservative_stress___0"
+      },
+      {
+        "child_count": 3,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_last_layers"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_last_layers.energy"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_last_layers.energy.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 257,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.edge_last_layers.energy.0.energy___0"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_last_layers.non_conservative_forces"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_last_layers.non_conservative_forces.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 771,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.edge_last_layers.non_conservative_forces.0.non_conservative_forces___0"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_last_layers.non_conservative_stress"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.edge_last_layers.non_conservative_stress.0"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 2313,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "model.edge_last_layers.non_conservative_stress.0.non_conservative_stress___0"
+      },
+      {
+        "child_count": 0,
+        "class": "DummyLongRangeFeaturizer",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.utils.long_range",
+        "name": "model.long_range_featurizer"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleList",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "model.additive_models"
+      },
+      {
+        "child_count": 1,
+        "class": "CompositionModel",
+        "direct_buffer_numel": 2291,
+        "direct_parameter_numel": 0,
+        "extra": {
+          "outputs": "{'energy': <torch.ScriptObject object at 0xbcfe1ab10>}"
+        },
+        "module": "metatrain.utils.additive.composition",
+        "name": "model.additive_models.0"
+      },
+      {
+        "child_count": 0,
+        "class": "BaseCompositionModel",
+        "direct_buffer_numel": 103,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.utils.additive._base_composition",
+        "name": "model.additive_models.0.model"
+      },
+      {
+        "child_count": 1,
+        "class": "Scaler",
+        "direct_buffer_numel": 4447,
+        "direct_parameter_numel": 0,
+        "extra": {
+          "outputs": "{'energy': <torch.ScriptObject object at 0xbcfe1ace0>, 'non_conservative_forces': <torch.ScriptObject object at 0xbd00b8ae0>, 'non_conservative_stress': <torch.ScriptObject object at 0xbd00b8af0>}"
+        },
+        "module": "metatrain.utils.scaler.scaler",
+        "name": "model.scaler"
+      },
+      {
+        "child_count": 0,
+        "class": "BaseScaler",
+        "direct_buffer_numel": 103,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "metatrain.utils.scaler._base_scaler",
+        "name": "model.scaler.model"
+      },
+      {
+        "child_count": 1,
+        "class": "ModuleDict",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 0,
+        "extra": {},
+        "module": "torch.nn.modules.container",
+        "name": "llpr_ensemble_layers"
+      },
+      {
+        "child_count": 0,
+        "class": "Linear",
+        "direct_buffer_numel": 0,
+        "direct_parameter_numel": 65536,
+        "extra": {},
+        "module": "torch.nn.modules.linear",
+        "name": "llpr_ensemble_layers.energy"
+      }
+    ],
+    "parameter_numel": 25989658,
+    "pet_metadata": {
+      "atomic_type_count": 102,
+      "atomic_types": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102
+      ],
+      "base_dataset_info": {
+        "atomic_type_count": 102,
+        "atomic_types": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102
+        ],
+        "length_unit": "angstrom",
+        "targets": {
+          "energy": {
+            "description": "",
+            "layout": "TensorMap with 1 blocks\nkeys: _\n      0",
+            "quantity": "energy",
+            "unit": "eV"
+          },
+          "non_conservative_forces": {
+            "description": "",
+            "layout": "TensorMap with 1 blocks\nkeys: _\n      0",
+            "quantity": "force",
+            "unit": "eV/A"
+          },
+          "non_conservative_stress": {
+            "description": "",
+            "layout": "TensorMap with 1 blocks\nkeys: _\n      0",
+            "quantity": "pressure",
+            "unit": "eV/A^3"
+          }
+        }
+      },
+      "base_model_class": "PET",
+      "base_model_module": "metatrain.pet.model",
+      "dataset_info": {
+        "atomic_type_count": 102,
+        "atomic_types": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102
+        ],
+        "length_unit": "angstrom",
+        "targets": {
+          "energy": {
+            "description": "",
+            "layout": "TensorMap with 1 blocks\nkeys: _\n      0",
+            "quantity": "energy",
+            "unit": "eV"
+          }
+        }
+      },
+      "hypers": {
+        "activation": "SwiGLU",
+        "attention_temperature": 1.0,
+        "cutoff": 8.0,
+        "cutoff_function": "Bump",
+        "cutoff_width": 0.5,
+        "d_feedforward": 512,
+        "d_head": 256,
+        "d_node": 1024,
+        "d_pet": 256,
+        "featurizer_type": "feedforward",
+        "long_range": {
+          "enable": false,
+          "interpolation_nodes": 5,
+          "kspace_resolution": 1.33,
+          "smearing": 1.4,
+          "use_ewald": false
+        },
+        "normalization": "RMSNorm",
+        "num_attention_layers": 1,
+        "num_gnn_layers": 3,
+        "num_heads": 8,
+        "num_neighbors_adaptive": 16,
+        "transformer_type": "PreLN",
+        "zbl": false
+      },
+      "outputs": [
+        "energy",
+        "features",
+        "mtt::aux::energy_last_layer_features",
+        "mtt::aux::non_conservative_forces_last_layer_features",
+        "mtt::aux::non_conservative_stress_last_layer_features",
+        "non_conservative_forces",
+        "non_conservative_stress"
+      ],
+      "species_to_species_index": [
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101
+      ],
+      "uncertainty_wrapper_present": true,
+      "unsupported_output_heads_present": [
+        "mtt::aux::non_conservative_forces_last_layer_features",
+        "mtt::aux::non_conservative_stress_last_layer_features",
+        "non_conservative_forces",
+        "non_conservative_stress"
+      ],
+      "wrapper_class": "LLPRUncertaintyModel",
+      "wrapper_module": "metatrain.llpr.model"
+    },
+    "root_class": "LLPRUncertaintyModel",
+    "root_module": "metatrain.llpr.model",
+    "state_dtype_counts": {
+      "torch.float32": 145,
+      "torch.int64": 3,
+      "torch.uint8": 4
+    },
+    "state_kind_counts": {
+      "buffer": 18,
+      "parameter": 134
+    },
+    "state_tensor_count": 152
+  },
+  "reference": {
+    "commit": "1f0b65c9efeb31abcfb9a14ca5859f0b3ce45e78",
+    "name": "upet",
+    "package_version": "0.2.3",
+    "repository": "https://github.com/lab-cosmo/upet"
+  },
+  "schema_version": "pet-upet-inspection-v1",
+  "selected_model": "pet-mad-s-v1.5.0",
+  "state_tensors": [
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "covariance_energy_uncertainty",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        512,
+        512
+      ],
+      "value_sha256": "20e6a4e71b8dc5aa89f714cfe1d30094821817b0b00cdf6e0bd2a37d3839c9c2"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "cholesky_energy_uncertainty",
+      "nonzero": 131328,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        512,
+        512
+      ],
+      "value_sha256": "c0cdfde46d519a825e3f58c5206d5b360b566e86d3f6823e66f942b27d9c45c6"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "multiplier_energy_uncertainty",
+      "nonzero": 1,
+      "numel": 1,
+      "requires_grad": false,
+      "shape": [
+        1
+      ],
+      "value_sha256": "82d3b250995aa3869bbfd329c116d53f650e3c9aa2b1875f06651bd861996bf0"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "covariance_mtt::aux::non_conservative_forces_uncertainty",
+      "nonzero": 0,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        512,
+        512
+      ],
+      "value_sha256": "30e14955ebf1352266dc2ff8067e68104607e750abb9d3b36582b8af909fcb58"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "cholesky_mtt::aux::non_conservative_forces_uncertainty",
+      "nonzero": 512,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        512,
+        512
+      ],
+      "value_sha256": "277a9bfd1ac7fb8413800f199e0af1a7bd5297e9e24abf948345ad560492de70"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "multiplier_mtt::aux::non_conservative_forces_uncertainty",
+      "nonzero": 1,
+      "numel": 1,
+      "requires_grad": false,
+      "shape": [
+        1
+      ],
+      "value_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "covariance_mtt::aux::non_conservative_stress_uncertainty",
+      "nonzero": 0,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        512,
+        512
+      ],
+      "value_sha256": "30e14955ebf1352266dc2ff8067e68104607e750abb9d3b36582b8af909fcb58"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "cholesky_mtt::aux::non_conservative_stress_uncertainty",
+      "nonzero": 512,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        512,
+        512
+      ],
+      "value_sha256": "277a9bfd1ac7fb8413800f199e0af1a7bd5297e9e24abf948345ad560492de70"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "multiplier_mtt::aux::non_conservative_stress_uncertainty",
+      "nonzero": 1,
+      "numel": 1,
+      "requires_grad": false,
+      "shape": [
+        1
+      ],
+      "value_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "dtype": "torch.int64",
+      "kind": "buffer",
+      "name": "model.species_to_species_index",
+      "nonzero": 102,
+      "numel": 103,
+      "requires_grad": false,
+      "shape": [
+        103
+      ],
+      "value_sha256": "7f04f9b863bc3dceb140496625cf91896319c103c43565acaf2850276b902782"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.attention.input_linear.weight",
+      "nonzero": 196608,
+      "numel": 196608,
+      "requires_grad": false,
+      "shape": [
+        768,
+        256
+      ],
+      "value_sha256": "b425412b16aa28638cfea4e4beae378273e0633f02912211435c996edd589dc4"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.attention.input_linear.bias",
+      "nonzero": 768,
+      "numel": 768,
+      "requires_grad": false,
+      "shape": [
+        768
+      ],
+      "value_sha256": "ada205f8dfdb9fb435dceac0b5b5dadeb861774b4c51d1af0215dc93236f6d8c"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.attention.output_linear.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "3b0af9596ebd087f9174e9f1d77b497727841895851e1a6dc53af2d065b72e1c"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.attention.output_linear.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "392be16674fb8b43c27203c0282124daa3dfe29f1db3ba20da423da688731008"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.norm_attention.weight",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "47d66b502a005a09d8e117de1693923e99f4749aa4025a74c2b2759e82f66059"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.norm_mlp.weight",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "6e4e1f2c2221281adc87ff167e00a2090083ab3ca3981725ccb996dda12360ae"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.mlp.w_in.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        1024,
+        256
+      ],
+      "value_sha256": "589802d13db637bfde3547756f4cf045deed45bb9a8f5b5189a849a65df950ed"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.mlp.w_in.bias",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "968569a44db4e483e60b6adcd41b9947daf0b1cd305bb760216b4bd1cbaea01b"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.mlp.w_out.weight",
+      "nonzero": 131072,
+      "numel": 131072,
+      "requires_grad": false,
+      "shape": [
+        256,
+        512
+      ],
+      "value_sha256": "280b5c9640ab7788ab1b8982f59426d89c60114376b043a815d2e58282d9de49"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.mlp.w_out.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "0a71842ce1db903ac2688b5721dda5be16e77d84bb600b6e5ce256d4999c0694"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.center_contraction.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        256,
+        1024
+      ],
+      "value_sha256": "5c750ae056bd284c92af7ed5539d03a3939fddc76ac975eeff493b3729ae7d88"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.center_contraction.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "ddd2446be5b51db4777960ed5d0f539dab2148a9eb64df5207792ea17f1579ad"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.center_expansion.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        1024,
+        256
+      ],
+      "value_sha256": "7f91fdd84a1f4d56ab520cf4a729190044bc5aea58a2b84fd3f8a609d1e95f88"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.center_expansion.bias",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "9c718f5d0396336b10ad1ad1fbd4c0f9487c1e17bb0951011d8a24b6f179c8d3"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.norm_center_features.weight",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "ca4cc27704a025e8720d5ae7b47e2e0d63e9fa35d43230883fc161675dec8875"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.center_mlp.w_in.weight",
+      "nonzero": 4194304,
+      "numel": 4194304,
+      "requires_grad": false,
+      "shape": [
+        4096,
+        1024
+      ],
+      "value_sha256": "9bd6918036eec621fd8b748e8ac2682286170285b581e88414b2b4db4d56c94d"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.center_mlp.w_in.bias",
+      "nonzero": 4096,
+      "numel": 4096,
+      "requires_grad": false,
+      "shape": [
+        4096
+      ],
+      "value_sha256": "eeb33707f12516da2bbabb95a971822eab69252f52c78930f349582f2f5aa179"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.center_mlp.w_out.weight",
+      "nonzero": 2097152,
+      "numel": 2097152,
+      "requires_grad": false,
+      "shape": [
+        1024,
+        2048
+      ],
+      "value_sha256": "936f1cf7d8514b2a1fec0ccd214e0ccc2e2d60aead0fb472fe7dcda97ab7032d"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.trans.layers.0.center_mlp.w_out.bias",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "871d5113737b20dc0184046065d239b574a541387e7260ab84885a00a868ea9e"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.edge_embedder.weight",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        256,
+        4
+      ],
+      "value_sha256": "fa4580b26a9c9a021c1a338610e1ab55bfd40945b7fe8008b973ce2bb1e624d4"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.edge_embedder.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "8c6f1c4a624dcf3f2dfa0b9747db8b3bbfc29b18ed9eae7dcaefea6b53c5154c"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.compress.0.weight",
+      "nonzero": 131072,
+      "numel": 131072,
+      "requires_grad": false,
+      "shape": [
+        256,
+        512
+      ],
+      "value_sha256": "08fb140904f8c0c62aa640e31d603ea3edc5d4426b23bee0fb828fd0e7cd1453"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.compress.0.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "ef92d6ef524d1135e27cb1e9567a40549a51de68017b846574b9b729cff1b3c7"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.compress.2.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "15c634c1dda096f71b73783e0c9535af1f372db81a298b4e7eaa12cbcb03009e"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.0.compress.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "b4adcc0c1a55ffa0a7d57e5f18582d047d1a06ec7dabc7231fc8070c32ffca8a"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.attention.input_linear.weight",
+      "nonzero": 196608,
+      "numel": 196608,
+      "requires_grad": false,
+      "shape": [
+        768,
+        256
+      ],
+      "value_sha256": "990649adfc94d0ac69427aea8c7f6f63022b00e9a30925a78baadbc26b6b7bcf"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.attention.input_linear.bias",
+      "nonzero": 768,
+      "numel": 768,
+      "requires_grad": false,
+      "shape": [
+        768
+      ],
+      "value_sha256": "b11c9b1317b07386377369be9aeafb560913bd68679842370dc9b3ab5c7a7ad0"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.attention.output_linear.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "d0e882dc42ef11094866f23368e7337b790d3838099940ec8c8b29bb021f1f80"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.attention.output_linear.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "09604926ffde2b5eee0124cbbb9349ec45078fa8a1bc229e545d3e4d9f69c5ca"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.norm_attention.weight",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "69649f8edd57e6d38e9b584d345e24a73462590df122055eb036e232acfcf7d7"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.norm_mlp.weight",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "b431b54fe6643bf71b1860a3c82c1ff40dd85bcc57ed578b0bd3292fc92cc008"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.mlp.w_in.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        1024,
+        256
+      ],
+      "value_sha256": "dd08748415046c35eb9517ab14ee0d4316dd6f74d74a1da8bcade0c43b353190"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.mlp.w_in.bias",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "6e0ec6006091fccd4346ea2a5b91ef0e7666a7133d34e57d7f19b3a4d1038822"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.mlp.w_out.weight",
+      "nonzero": 131072,
+      "numel": 131072,
+      "requires_grad": false,
+      "shape": [
+        256,
+        512
+      ],
+      "value_sha256": "5c07e824a7ceae62fcbc2600f99da543fb6fdd87992c3e9382fde51886459d51"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.mlp.w_out.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "9eec40321cbbcf19add1b82976f736d1afd8e087ce6693e1a501ab1fdf2feb05"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.center_contraction.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        256,
+        1024
+      ],
+      "value_sha256": "5d29073eaa06fd5f14138b80f0891e885aa318f98a831ef5dc76784dbbe3fed7"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.center_contraction.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "ecd21d3a9f2ea979427bb904e6b9a3de97fa80452dc5e05ec9698a0f032e3e51"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.center_expansion.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        1024,
+        256
+      ],
+      "value_sha256": "44b09838d50a7d5bc17c95d833223d3901568c3aa3010db1ff99115ed78cd1b2"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.center_expansion.bias",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "5500b320dd8f4113a0101d4b013c643a6e1bda59e2888dfe3a49c576ffcb4aa1"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.norm_center_features.weight",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "4904b1aebfcee316ab03826c18e1e77cb4400c7eb0b59a254617f78508120577"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.center_mlp.w_in.weight",
+      "nonzero": 4194304,
+      "numel": 4194304,
+      "requires_grad": false,
+      "shape": [
+        4096,
+        1024
+      ],
+      "value_sha256": "db4ce2cb576067b0155ee2e26a48a4a1225a968bb622217a44ba93ec1a825c5d"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.center_mlp.w_in.bias",
+      "nonzero": 4096,
+      "numel": 4096,
+      "requires_grad": false,
+      "shape": [
+        4096
+      ],
+      "value_sha256": "ba160fe27afb54141ddf413b7609ea58efedb17b2f209f0666647f7dc79e848c"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.center_mlp.w_out.weight",
+      "nonzero": 2097152,
+      "numel": 2097152,
+      "requires_grad": false,
+      "shape": [
+        1024,
+        2048
+      ],
+      "value_sha256": "8213ba6d552b19f26dd3a8d3c4a0920f8c2aabdd1e2fc17b8c9756d69d305c27"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.trans.layers.0.center_mlp.w_out.bias",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "9abfb9bfb7f1dbb66ba81bf0a0fb9be08c242eaa8562a907085b13cc39fc01aa"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.edge_embedder.weight",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        256,
+        4
+      ],
+      "value_sha256": "d5127c42a634f81395edcf89b11b5522885378b9f001cd7cb85e608acfc9b286"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.edge_embedder.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "7811583dcfd81c77d1fe68ea64e0b333d428f7b620275ed2046206a9e98b1901"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.compress.0.weight",
+      "nonzero": 196608,
+      "numel": 196608,
+      "requires_grad": false,
+      "shape": [
+        256,
+        768
+      ],
+      "value_sha256": "a6557d02045126e1501095f75e7cdb27962d737567805a6a5f402179dc9bfd6b"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.compress.0.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "87af9ae17777158b3909093808e4877829c63d9a6c264a607ba036b03d30e678"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.compress.2.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "b4733b27bc2692bc783ad479b9934c7cdba0cbcf31729707ad9e96202ba77e90"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.compress.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "cae9c2b87a4bd8533e9e57cb83f68eacebaab474262cc9b7f8fae5e7f19ef249"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.1.neighbor_embedder.weight",
+      "nonzero": 26112,
+      "numel": 26112,
+      "requires_grad": false,
+      "shape": [
+        102,
+        256
+      ],
+      "value_sha256": "1fc869538dc80289415ff335dc992a0dc876c1e7555830b77f8d07e83b97cd7c"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.attention.input_linear.weight",
+      "nonzero": 196608,
+      "numel": 196608,
+      "requires_grad": false,
+      "shape": [
+        768,
+        256
+      ],
+      "value_sha256": "2fb52c56cb8f69c84ea0029206282dffc054c148506f9793ae2e021748879022"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.attention.input_linear.bias",
+      "nonzero": 768,
+      "numel": 768,
+      "requires_grad": false,
+      "shape": [
+        768
+      ],
+      "value_sha256": "0b987ab662d2c9362e8c8f890a1263a85a8fd74fc468310f97108bb0e462e705"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.attention.output_linear.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "fecfec5a9f0bf34e3a32e23eee85dfa8dd9878a57680c9bba5bc86183a60dd14"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.attention.output_linear.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "429be61675d773f56ad1b68f538ae8768decd2c0ff461c136c187004e396d722"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.norm_attention.weight",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "41cb2893fdd1fcde851094dc94a169406fd3d4c48255b403340084fa53a343a3"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.norm_mlp.weight",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "45feae7ba8d5f1d8e8bc02f1e48004b1553970cf2e53dcb54de8346e7f7f0937"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.mlp.w_in.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        1024,
+        256
+      ],
+      "value_sha256": "28ad20e2df0f5e7dea2beff444e7271f755e629f60e3df7d89962eb153fbfd9e"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.mlp.w_in.bias",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "0c0a69de89917d896f13e0aa4836a1d71724480fd2c3cb06b1dac76545e2cfe9"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.mlp.w_out.weight",
+      "nonzero": 131072,
+      "numel": 131072,
+      "requires_grad": false,
+      "shape": [
+        256,
+        512
+      ],
+      "value_sha256": "b8bd75a23cb02145e9e676ba5a64b556b04387ddcc37bce9baded11061b339a0"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.mlp.w_out.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "ba21b5d0380582895eabd758e891178ce39b7b045f5e5760e0448e6c533ff082"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.center_contraction.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        256,
+        1024
+      ],
+      "value_sha256": "cf5f4f4a0224ae3817439ad21af4515279ac90e861b9551231bc52956e751dc6"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.center_contraction.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "9d4fe0792779b66283c93979755891928c10a3a9943c7b3773360bea2c17a049"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.center_expansion.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        1024,
+        256
+      ],
+      "value_sha256": "9403c7c2a75902c749fa9d63a7b1ce9e29fde2640355eb7ee9d2f440288c6ea3"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.center_expansion.bias",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "eae1f4df4d7b0c247d0e7aa7128db25af571a043b6c2926236412f074544fd53"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.norm_center_features.weight",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "a009b8f7786b6d880eb6dda36cb1b7c714b210a6620fe54cda73f2c87b0417e8"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.center_mlp.w_in.weight",
+      "nonzero": 4194304,
+      "numel": 4194304,
+      "requires_grad": false,
+      "shape": [
+        4096,
+        1024
+      ],
+      "value_sha256": "24b5f4b99b681bd1edfc857a6fc0993210902185f283cb7a9b3ad099a58204bf"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.center_mlp.w_in.bias",
+      "nonzero": 4096,
+      "numel": 4096,
+      "requires_grad": false,
+      "shape": [
+        4096
+      ],
+      "value_sha256": "c9eee31fd6115f77533d1a9b49abddacb8eddb5751cb4374de32de74358f3c8e"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.center_mlp.w_out.weight",
+      "nonzero": 2097152,
+      "numel": 2097152,
+      "requires_grad": false,
+      "shape": [
+        1024,
+        2048
+      ],
+      "value_sha256": "d5bb7f059f257f931640d72cada357f52f18ba6f6a305d6bb0775f98dd60f701"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.trans.layers.0.center_mlp.w_out.bias",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        1024
+      ],
+      "value_sha256": "5cb5780998448116fa0ddaffc51faa5357ecd57379db5b90e8b499d8309aaefe"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.edge_embedder.weight",
+      "nonzero": 1024,
+      "numel": 1024,
+      "requires_grad": false,
+      "shape": [
+        256,
+        4
+      ],
+      "value_sha256": "9e9e9a18bd4ef16100819ff61c4f77f2fb3c6291d60397a963c54684ccbb99dc"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.edge_embedder.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "83b973abd0c1c3dd2be54963f1a8f9f010e7a16cbc59c63f6fcf66ee0d248d3e"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.compress.0.weight",
+      "nonzero": 196608,
+      "numel": 196608,
+      "requires_grad": false,
+      "shape": [
+        256,
+        768
+      ],
+      "value_sha256": "cb4c7ac46da44fdb097309b2147b1f36b0d035eba4ec0b2de54686eb642e85f4"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.compress.0.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "23b534dc211d59be1cee7b3c6b3fc5ed213094a56410880bf707a669506bf647"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.compress.2.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "8d0bdf88f54d17226a77338a15f230efbb7473a4f6a83488240e4041c0b1ac3b"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.compress.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "b2d2f520b2824928b528e4b7b017d73b52842b23b441f5a6ccb7371e70ed02f0"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.gnn_layers.2.neighbor_embedder.weight",
+      "nonzero": 26112,
+      "numel": 26112,
+      "requires_grad": false,
+      "shape": [
+        102,
+        256
+      ],
+      "value_sha256": "6888827532062d062f4591570452e9aae920db096ae50e994d0011e1d6a18f7d"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_norms.0.weight",
+      "nonzero": 512,
+      "numel": 512,
+      "requires_grad": false,
+      "shape": [
+        512
+      ],
+      "value_sha256": "8914738e008301d9be9065372c8d1e8483213372a903931384c9f99c2d131872"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_norms.0.bias",
+      "nonzero": 512,
+      "numel": 512,
+      "requires_grad": false,
+      "shape": [
+        512
+      ],
+      "value_sha256": "f79ab1bd5c25ed30b86998f7df7fc4ba0ff476ef42db335e2eee2a3a4a0d354c"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_norms.1.weight",
+      "nonzero": 512,
+      "numel": 512,
+      "requires_grad": false,
+      "shape": [
+        512
+      ],
+      "value_sha256": "df1ec9429d4391e820c83fe2a9b0b58d78a3a64b113db6355994044859ff2267"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_norms.1.bias",
+      "nonzero": 512,
+      "numel": 512,
+      "requires_grad": false,
+      "shape": [
+        512
+      ],
+      "value_sha256": "b16236876c0c2abe4ab91ef89fa4ade4a282676ca73e82b65af2abc86d7c24d7"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_norms.2.weight",
+      "nonzero": 512,
+      "numel": 512,
+      "requires_grad": false,
+      "shape": [
+        512
+      ],
+      "value_sha256": "eb529e7a202c5e2fb53b1e4cbd741a27e45d1211d779c6d125f05fca07ee25c0"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_norms.2.bias",
+      "nonzero": 512,
+      "numel": 512,
+      "requires_grad": false,
+      "shape": [
+        512
+      ],
+      "value_sha256": "e8475e0a4b4d14c6d3ec28306466a6eb3cc1d67048cc7b9f4efbb8ec0f9869a4"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.0.0.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        512,
+        512
+      ],
+      "value_sha256": "ba868b94d12d7616d4d47785b563ac4fdc6b4be52d5775a2fa9857526fa2c9a8"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.0.0.bias",
+      "nonzero": 512,
+      "numel": 512,
+      "requires_grad": false,
+      "shape": [
+        512
+      ],
+      "value_sha256": "520242572a25ec18a5be864c444eabafb5b01cb22559c0299e7c024ab4e3bbcf"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.0.2.weight",
+      "nonzero": 131072,
+      "numel": 131072,
+      "requires_grad": false,
+      "shape": [
+        256,
+        512
+      ],
+      "value_sha256": "8187c5f1097495595472917777d8d592906a09fc372de90210c82b004b32a1ab"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.0.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "9f79d38b227d25fa98595505f196916c25020bcaa121c15f28ff13faa2dcb01e"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.1.0.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        512,
+        512
+      ],
+      "value_sha256": "49fcd42ed53a2583ef44bdf6b2820246fb88f87f837afe71ebbf2047c24963d9"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.1.0.bias",
+      "nonzero": 512,
+      "numel": 512,
+      "requires_grad": false,
+      "shape": [
+        512
+      ],
+      "value_sha256": "23856d29817dcd14efc7a69c767b2e07bb5cc5c16acb4cb03d6ab45eeceb69d2"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.1.2.weight",
+      "nonzero": 131072,
+      "numel": 131072,
+      "requires_grad": false,
+      "shape": [
+        256,
+        512
+      ],
+      "value_sha256": "5ee0837b40e1032d5886a5ab3a909f0f1b2eb7e238bb68dcc7d84c15e66799f6"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.1.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "3ea60f59d7ade5c71924599c91d501357ac6d9c8ac8eccf729eff9ec675a3eca"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.2.0.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        512,
+        512
+      ],
+      "value_sha256": "bb344fc29b08ab5d5fe012ee5f179d45e67cdf21d4ca3eed74d2affad930fda3"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.2.0.bias",
+      "nonzero": 512,
+      "numel": 512,
+      "requires_grad": false,
+      "shape": [
+        512
+      ],
+      "value_sha256": "734963bc04201ed434e3e68f18830bd1b9b39f75f6e3befda28fc4ffc28f1788"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.2.2.weight",
+      "nonzero": 131072,
+      "numel": 131072,
+      "requires_grad": false,
+      "shape": [
+        256,
+        512
+      ],
+      "value_sha256": "83fc9d2559e953f6652c2862ee5001eef4dcd62995d392dfe133611155f49331"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.combination_mlps.2.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "39d0b612c2ccc442510513c277eaec6fb8b32165178ebb62a50cad438b823faa"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_embedders.0.weight",
+      "nonzero": 104448,
+      "numel": 104448,
+      "requires_grad": false,
+      "shape": [
+        102,
+        1024
+      ],
+      "value_sha256": "3308aa7249734293380730be41e1afa4a9e6bbb6c347f32498215c944483aee5"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_embedder.weight",
+      "nonzero": 26112,
+      "numel": 26112,
+      "requires_grad": false,
+      "shape": [
+        102,
+        256
+      ],
+      "value_sha256": "ee64af97007d08bc591307cfb0cc28dd39f1b24de3756f9bc2fe0782d73e78e8"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.energy.0.0.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        256,
+        1024
+      ],
+      "value_sha256": "e73aaaf86da1213d849f5bc448d69ef201243c7717db7fff77d1a8edeb53fffc"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.energy.0.0.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "20539d9781d51309540991e37c71c7d9bdf7bb0e5d9979423ddfb2dc2f5aae70"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.energy.0.2.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "39fcd5581a4f0432421c6d0da9c719372ae57125bbfc7c487c7fe160654aba8a"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.energy.0.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "f2ccaac5e8db1f572c6b54a17312352c725bb628878e2416fc600b5e59faaae1"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.non_conservative_forces.0.0.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        256,
+        1024
+      ],
+      "value_sha256": "511b0564ed19b3fda4209f1a7ee4f24e1f770eaadec74102f057d379c68061b2"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.non_conservative_forces.0.0.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "5cbd04cce18352de82146208261865496d6014e1a73f443594f4dd4790f8bf2c"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.non_conservative_forces.0.2.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "490660a74957105f1c7814e9fc2ecd2aef392c9cea5727829f90cd9f42566173"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.non_conservative_forces.0.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "c46e2057011c52eda1fcb21f05d5ffc93fd85df0e92c5bac080a5bdb812372ea"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.non_conservative_stress.0.0.weight",
+      "nonzero": 262144,
+      "numel": 262144,
+      "requires_grad": false,
+      "shape": [
+        256,
+        1024
+      ],
+      "value_sha256": "c91531c2ed1fcc01bdf4a963b1f55aa2a513aea252d61d15eacfb0166f69493a"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.non_conservative_stress.0.0.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "004c31c9b7a91b81e60a0cbc049be7a2ba4be02277639fb18549b14304b62b65"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.non_conservative_stress.0.2.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "bcd67f532f3bbd664825aa013d9efd4b3b0f0a5e4b660110c9932765bdd57b64"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_heads.non_conservative_stress.0.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "f5dfa5c50146ca95266ea851f46cd333ca66c720ef636431a4d424c169f45054"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.energy.0.0.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "44ce9516cfefb7e2c65358edeb8bd16747b4306a4a9d89292784d0e2eee02ba6"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.energy.0.0.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "ecdb51522f2f19b46289d0816e3ea66403c447d7feff9602a0b080fcdf6000e8"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.energy.0.2.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "f5b624819d10832ebc6c82f7fd0fe83df057fb2d17491189a6d6620c71567eca"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.energy.0.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "90678760c9f37344b456dffa62bfe185f33702fa517280145efb0630c7e6dee6"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.non_conservative_forces.0.0.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "fa1558d042faf46ed0a7e7b70688bc62ccffa6a7709405265664f26c975f3430"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.non_conservative_forces.0.0.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "5a897dd600de23e48d76928e8e0f347045b23bc0e0c1d7e0223bc23978e07317"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.non_conservative_forces.0.2.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "d5ad13e56dbe8ed5367cdb4a584ed03e4a205f013b006b3803242631aa5bf2cf"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.non_conservative_forces.0.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "72f2c0e97b6f72fc2fa7d0e69c2ecafcabe64d30773412149f7b4b3abffa7e8b"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.non_conservative_stress.0.0.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "7a23647b8cde2cd6b5c7c8d3048b245b2ea70fd1926a2f051818ac734a0f143a"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.non_conservative_stress.0.0.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "926c8c58a71dab4fcbf413f8de669943e99c796e907918a5c737d6a540b7662b"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.non_conservative_stress.0.2.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        256,
+        256
+      ],
+      "value_sha256": "77ddcab54a28a946e41300537841b5bb3503ccfdc07cd70e679fbe15b3fc521e"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_heads.non_conservative_stress.0.2.bias",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        256
+      ],
+      "value_sha256": "0dbde12ea070c44a204256cd6eca3af0bbd5345173ace49f5cdd79829bb5f4c7"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_last_layers.energy.0.energy___0.weight",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        1,
+        256
+      ],
+      "value_sha256": "2ac668df1c1dd7492a212ac84fe7f0cac032f6c91b6c7e62e2b7e88d485eb60f"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_last_layers.energy.0.energy___0.bias",
+      "nonzero": 1,
+      "numel": 1,
+      "requires_grad": false,
+      "shape": [
+        1
+      ],
+      "value_sha256": "738b190e4bab8fb5a33168ef94515541959a445ca8b50ad31868bfec8a802270"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_last_layers.non_conservative_forces.0.non_conservative_forces___0.weight",
+      "nonzero": 768,
+      "numel": 768,
+      "requires_grad": false,
+      "shape": [
+        3,
+        256
+      ],
+      "value_sha256": "725b504627f7673564d12bd99bef0d4b20e9783c777c724e34702656513c808f"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_last_layers.non_conservative_forces.0.non_conservative_forces___0.bias",
+      "nonzero": 3,
+      "numel": 3,
+      "requires_grad": false,
+      "shape": [
+        3
+      ],
+      "value_sha256": "80ba3849148307484658c7bc475b729b475ef8280dc44c164b0c7f94375dd684"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_last_layers.non_conservative_stress.0.non_conservative_stress___0.weight",
+      "nonzero": 2304,
+      "numel": 2304,
+      "requires_grad": false,
+      "shape": [
+        9,
+        256
+      ],
+      "value_sha256": "2825d7e38e4115693b79852204a8372815398867b3e5c5d2c004ae5175598194"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.node_last_layers.non_conservative_stress.0.non_conservative_stress___0.bias",
+      "nonzero": 9,
+      "numel": 9,
+      "requires_grad": false,
+      "shape": [
+        9
+      ],
+      "value_sha256": "7b61b9239f2930a7966e2af04eda1d151a000dc4be1882050930195bee0dd7e1"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_last_layers.energy.0.energy___0.weight",
+      "nonzero": 256,
+      "numel": 256,
+      "requires_grad": false,
+      "shape": [
+        1,
+        256
+      ],
+      "value_sha256": "9112dc8ba784d056d77f700fa9a6e831f1d56b2008a9fc38a1a77c5c67eee51b"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_last_layers.energy.0.energy___0.bias",
+      "nonzero": 1,
+      "numel": 1,
+      "requires_grad": false,
+      "shape": [
+        1
+      ],
+      "value_sha256": "4186df3d6638398044833d687a223a472030244928391882c8d8d1e20f0f47d7"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_last_layers.non_conservative_forces.0.non_conservative_forces___0.weight",
+      "nonzero": 768,
+      "numel": 768,
+      "requires_grad": false,
+      "shape": [
+        3,
+        256
+      ],
+      "value_sha256": "856b34ec26fa6a092c12c0d3a4d057f8265095543626de2543262c6adff48067"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_last_layers.non_conservative_forces.0.non_conservative_forces___0.bias",
+      "nonzero": 3,
+      "numel": 3,
+      "requires_grad": false,
+      "shape": [
+        3
+      ],
+      "value_sha256": "ebdd5f90e56ab2000fa67172844ae74ff06ed8dd1ac86a5a4073f0542aa791cf"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_last_layers.non_conservative_stress.0.non_conservative_stress___0.weight",
+      "nonzero": 2304,
+      "numel": 2304,
+      "requires_grad": false,
+      "shape": [
+        9,
+        256
+      ],
+      "value_sha256": "b40766bdd3d40f3218417fb41f38f61ac1184beea7dd3c7e3d2bc6d4fa283963"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "model.edge_last_layers.non_conservative_stress.0.non_conservative_stress___0.bias",
+      "nonzero": 9,
+      "numel": 9,
+      "requires_grad": false,
+      "shape": [
+        9
+      ],
+      "value_sha256": "1e78e893e1bd0c05bea6b4daa90c8a9a1fd34b3898473a8b1814675731d24180"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "model.additive_models.0.dummy_buffer",
+      "nonzero": 1,
+      "numel": 1,
+      "requires_grad": false,
+      "shape": [
+        1
+      ],
+      "value_sha256": "735a9f7cb4f4f08be09e4500279faa5dfcc58de59cea4ec67e108f3683daf7ba"
+    },
+    {
+      "dtype": "torch.uint8",
+      "kind": "buffer",
+      "name": "model.additive_models.0.energy_composition_buffer",
+      "nonzero": 1752,
+      "numel": 2290,
+      "requires_grad": false,
+      "shape": [
+        2290
+      ],
+      "value_sha256": "91990fb5f52807a5432ecda536b7459917285d7ba255a69e44c2d5247593f9bc"
+    },
+    {
+      "dtype": "torch.int64",
+      "kind": "buffer",
+      "name": "model.additive_models.0.model.type_to_index",
+      "nonzero": 102,
+      "numel": 103,
+      "requires_grad": false,
+      "shape": [
+        103
+      ],
+      "value_sha256": "cc526c711a21af14e5927ec01b057d022e5cb93cc03de7156d856d43e830e40e"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "buffer",
+      "name": "model.scaler.dummy_buffer",
+      "nonzero": 1,
+      "numel": 1,
+      "requires_grad": false,
+      "shape": [
+        1
+      ],
+      "value_sha256": "f8d0b8628b7a3ed34162714512891693acc30d3a4538312a5d9fda7c156b0fd9"
+    },
+    {
+      "dtype": "torch.uint8",
+      "kind": "buffer",
+      "name": "model.scaler.energy_scaler_buffer",
+      "nonzero": 842,
+      "numel": 1078,
+      "requires_grad": false,
+      "shape": [
+        1078
+      ],
+      "value_sha256": "511101a2cfe1653a80883b269a4949cff703aa3737faf41124678a4b5c0d9cb8"
+    },
+    {
+      "dtype": "torch.uint8",
+      "kind": "buffer",
+      "name": "model.scaler.non_conservative_forces_scaler_buffer",
+      "nonzero": 1752,
+      "numel": 2290,
+      "requires_grad": false,
+      "shape": [
+        2290
+      ],
+      "value_sha256": "87cf51396a44279629d6dffeae469a5b3d5ea311d6005cdd888c84755f104f7b"
+    },
+    {
+      "dtype": "torch.uint8",
+      "kind": "buffer",
+      "name": "model.scaler.non_conservative_stress_scaler_buffer",
+      "nonzero": 842,
+      "numel": 1078,
+      "requires_grad": false,
+      "shape": [
+        1078
+      ],
+      "value_sha256": "9bafe50a53cb3e80aae9a5a05beeca91a2ca8c28d19e41ea8b2d2b6ba143a72c"
+    },
+    {
+      "dtype": "torch.int64",
+      "kind": "buffer",
+      "name": "model.scaler.model.type_to_index",
+      "nonzero": 102,
+      "numel": 103,
+      "requires_grad": false,
+      "shape": [
+        103
+      ],
+      "value_sha256": "a2a3b74ca3be1b4a175efa027a55aac9fbd018fbc7e9cd444360318ae5fdaa12"
+    },
+    {
+      "dtype": "torch.float32",
+      "kind": "parameter",
+      "name": "llpr_ensemble_layers.energy.weight",
+      "nonzero": 65536,
+      "numel": 65536,
+      "requires_grad": false,
+      "shape": [
+        128,
+        512
+      ],
+      "value_sha256": "e94479bd28d04bb015ae017a77acfa212ec7a72fa19b7d8ee475468eb844dab3"
+    }
+  ]
+}

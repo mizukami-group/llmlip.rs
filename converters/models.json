@@ -1,0 +1,263 @@
+{
+  "schema_version": "llmlip-converter-registry-v1",
+  "note": "Source-only publication; no foundation weights are distributed. redistribution.policy is project policy, not a determination of upstream legal rights. Review the linked license for the exact checkpoint. See docs/model_weight_policy.md.",
+  "models": {
+    "uma-s-1p2": {
+      "architecture": "uma-v1",
+      "title": "UMA-S-1.2 (Meta FAIR Universal Model for Atoms)",
+      "restricted": true,
+      "redistribution": {
+        "source_checkpoint": "not_redistributed",
+        "converted_e3rs": "not_redistributed",
+        "policy": "converter_only"
+      },
+      "source": {
+        "kind": "huggingface",
+        "repo": "facebook/UMA",
+        "file": "checkpoints/uma-s-1p2.pt",
+        "url": "https://huggingface.co/facebook/UMA",
+        "gated": true
+      },
+      "license": {
+        "name": "FAIR Chemistry License (custom terms; review artifact-specific agreement)",
+        "url": "https://huggingface.co/facebook/UMA/blob/main/LICENSE",
+        "acceptance_required": true
+      },
+      "checkpoint": {
+        "sha256": "ba5c0d912efa22dc238e5fb1b5b7f66ee2e68c48c1b95b7cfd7fe1da5938398b",
+        "size_bytes": 2333393167
+      },
+      "exporter": {
+        "script": "tools/reference/export_uma_state.py",
+        "checkpoint_arg": "--checkpoint-path",
+        "out_arg": "--out-dir",
+        "extra_args": [
+          "--write-tensors"
+        ]
+      }
+    },
+    "esen-30m-oam": {
+      "architecture": "esen-oam-v1",
+      "title": "eSEN-30M-OAM (FairChem, OMAT24)",
+      "restricted": true,
+      "redistribution": {
+        "source_checkpoint": "not_redistributed",
+        "converted_e3rs": "not_redistributed",
+        "policy": "converter_only"
+      },
+      "source": {
+        "kind": "huggingface",
+        "repo": "facebook/OMAT24",
+        "file": "esen-30m-oam (gated)",
+        "url": "https://huggingface.co/facebook/OMAT24",
+        "gated": true
+      },
+      "license": {
+        "name": "OMat24 License (custom terms; review artifact-specific agreement)",
+        "url": "https://huggingface.co/facebook/OMAT24/blob/main/LICENSE",
+        "acceptance_required": true
+      },
+      "checkpoint": {
+        "sha256": "adf7d38e5bccb8e0334434c0bd65ac75661fb646891df17ecc89c19d111efde1",
+        "size_bytes": 362285045
+      },
+      "exporter": {
+        "script": "tools/reference/export_esen_oam_state.py",
+        "checkpoint_arg": "--checkpoint-path",
+        "out_arg": "--out",
+        "extra_args": []
+      }
+    },
+    "mace-mh-1": {
+      "architecture": "mace-mh1-v1",
+      "title": "MACE-MH-1 (ACEsuit foundation model)",
+      "restricted": true,
+      "redistribution": {
+        "source_checkpoint": "not_redistributed",
+        "converted_e3rs": "not_redistributed",
+        "policy": "converter_only"
+      },
+      "source": {
+        "kind": "github-release",
+        "url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mh_1/mace-mh-1.model",
+        "gated": false
+      },
+      "alternate_sources": [
+        {
+          "kind": "huggingface",
+          "repo": "mace-foundations/mace-mh-1",
+          "url": "https://huggingface.co/mace-foundations/mace-mh-1/resolve/main/mace-mh-1.model",
+          "sha256": "ec00a2705854622fbbd898ccfb7701072fcd674709102d009fb919c1b8cc5dde",
+          "size_bytes": 59208715,
+          "note": "Different payload from the GitHub release (different bytes and SHA256). Not the pinned parity target; use --skip-verify only if you knowingly convert this candidate."
+        }
+      ],
+      "license": {
+        "name": "Academic Software Licence (ASL): academic non-commercial use; conditional redistribution",
+        "url": "https://github.com/ACEsuit/mace-foundations",
+        "acceptance_required": true
+      },
+      "checkpoint": {
+        "sha256": "a522eb7f59c7879963d41586528f4980baf33e086c94aa92e3eafdeccad3be47",
+        "size_bytes": 59208139
+      },
+      "exporter": {
+        "script": "tools/reference/export_mace_mh1_state.py",
+        "checkpoint_arg": "--artifact",
+        "out_arg": "--out-dir",
+        "extra_args": [
+          "--manifest",
+          "fixtures/mace/v0_3_16_4d2da09/mace_mh1_artifact_manifest.json",
+          "--dtype",
+          "f64"
+        ],
+        "requires": "third_party/mace checked out at the pinned commit (scripts/add_mace_reference_submodule.sh)"
+      }
+    },
+    "mace-polar-1-s": {
+      "architecture": "mace-polar-v1",
+      "title": "MACE-Polar-1 S (ACEsuit PolarMACE foundation model, small)",
+      "restricted": true,
+      "redistribution": {
+        "source_checkpoint": "not_redistributed",
+        "converted_e3rs": "not_redistributed",
+        "policy": "converter_only"
+      },
+      "source": {
+        "kind": "github-release",
+        "url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_polar_1/MACE-POLAR-1-S.model",
+        "gated": false
+      },
+      "license": {
+        "name": "Academic Software Licence (ASL): academic non-commercial use; conditional redistribution",
+        "url": "https://github.com/ACEsuit/mace-foundations",
+        "acceptance_required": true
+      },
+      "checkpoint": {
+        "sha256": "e4495612037b3b3312633182882a38a694ecac9ea0be2b9889ac0b2a84a99510",
+        "size_bytes": 33375439
+      },
+      "exporter": {
+        "script": "tools/reference/export_polarmace_state.py",
+        "checkpoint_arg": "--artifact-manifest",
+        "out_arg": "--out-dir",
+        "extra_args": [
+          "--dtype",
+          "f64"
+        ],
+        "manifest_template": "fixtures/mace/v0_3_16_4d2da09/polarmace_polar_1_s_artifact_manifest.json",
+        "requires": "third_party/mace checked out at the pinned commit (scripts/add_mace_reference_submodule.sh)"
+      }
+    },
+    "mace-polar-1-m": {
+      "architecture": "mace-polar-v1",
+      "title": "MACE-Polar-1 M (ACEsuit PolarMACE foundation model, medium)",
+      "restricted": true,
+      "redistribution": {
+        "source_checkpoint": "not_redistributed",
+        "converted_e3rs": "not_redistributed",
+        "policy": "converter_only"
+      },
+      "source": {
+        "kind": "github-release",
+        "url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_polar_1/MACE-POLAR-1-M.model",
+        "gated": false
+      },
+      "license": {
+        "name": "Academic Software Licence (ASL): academic non-commercial use; conditional redistribution",
+        "url": "https://github.com/ACEsuit/mace-foundations",
+        "acceptance_required": true
+      },
+      "checkpoint": {
+        "sha256": "fab8b8713c832f31a2a853aaa22fd638be8a369cbf5095e6b3e982a18d10e93a",
+        "size_bytes": 68133235
+      },
+      "exporter": {
+        "script": "tools/reference/export_polarmace_state.py",
+        "checkpoint_arg": "--artifact-manifest",
+        "out_arg": "--out-dir",
+        "extra_args": [
+          "--dtype",
+          "f64"
+        ],
+        "manifest_template": "fixtures/mace/v0_3_16_4d2da09/polarmace_polar_1_m_artifact_manifest.json",
+        "requires": "third_party/mace checked out at the pinned commit (scripts/add_mace_reference_submodule.sh)"
+      }
+    },
+    "mace-polar-1-l": {
+      "architecture": "mace-polar-v1",
+      "title": "MACE-Polar-1 L (ACEsuit PolarMACE foundation model, large)",
+      "restricted": true,
+      "redistribution": {
+        "source_checkpoint": "not_redistributed",
+        "converted_e3rs": "not_redistributed",
+        "policy": "converter_only"
+      },
+      "source": {
+        "kind": "github-release",
+        "url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_polar_1/MACE-POLAR-1-L.model",
+        "gated": false
+      },
+      "license": {
+        "name": "Academic Software Licence (ASL): academic non-commercial use; conditional redistribution",
+        "url": "https://github.com/ACEsuit/mace-foundations",
+        "acceptance_required": true
+      },
+      "checkpoint": {
+        "sha256": "9f65f8dc6ddaff1d631e299cb531376a7da5e68d1bef04f34a2d5073d5ef114b",
+        "size_bytes": 129808715
+      },
+      "exporter": {
+        "script": "tools/reference/export_polarmace_state.py",
+        "checkpoint_arg": "--artifact-manifest",
+        "out_arg": "--out-dir",
+        "extra_args": [
+          "--dtype",
+          "f64"
+        ],
+        "manifest_template": "fixtures/mace/v0_3_16_4d2da09/polarmace_polar_1_l_artifact_manifest.json",
+        "requires": "third_party/mace checked out at the pinned commit (scripts/add_mace_reference_submodule.sh)"
+      }
+    },
+    "pet-mad-s": {
+      "architecture": "pet-lite-v1",
+      "title": "PET-MAD-S v1.5.0 (lab-cosmo universal PET, MAD-1.5)",
+      "restricted": false,
+      "redistribution": {
+        "source_checkpoint": "not_redistributed",
+        "converted_e3rs": "not_redistributed",
+        "policy": "converter_only"
+      },
+      "source": {
+        "kind": "huggingface",
+        "repo": "lab-cosmo/upet",
+        "file": "models/pet-mad-s-v1.5.0.ckpt",
+        "url": "https://huggingface.co/lab-cosmo/upet/resolve/c3193bbd2056a56186b86bf124db96647edd37aa/models/pet-mad-s-v1.5.0.ckpt",
+        "gated": false
+      },
+      "license": {
+        "name": "BSD-3-Clause (HF repo cardData; GitHub lab-cosmo/upet LICENSE, (c) 2023 Laboratory of Computational Science and Modeling)",
+        "url": "https://huggingface.co/lab-cosmo/upet",
+        "acceptance_required": false
+      },
+      "checkpoint": {
+        "sha256": "9f55849d1e757ceefdd2d7ebd2374b543d7fdb8972d0b96fb9bc890eff3b6029",
+        "size_bytes": 110353539
+      },
+      "exporter": {
+        "script": "tools/reference/export_pet_lite_metadata.py",
+        "checkpoint_arg": "--checkpoint",
+        "out_arg": "--out",
+        "extra_args": [
+          "--artifact-manifest",
+          "fixtures/pet/v0_2_3_1f0b65c9/pet_mad_s_1_5_artifact_manifest.json",
+          "--inspection",
+          "fixtures/pet/v0_2_3_1f0b65c9/pet_mad_s_1_5_inspection.json",
+          "--export-candidate-tensors",
+          "--allow-large-payload-export"
+        ],
+        "requires": "third_party/upet checked out at the pinned commit (scripts/add_upet_reference_submodule.sh) plus a Python env with torch/metatrain"
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "artifact": {
+    "binary_tracked_by_git": false,
+    "cache_path": "outputs/reference-artifacts/pet/pet-mad-s-v1.5.0.ckpt",
+    "downloaded": true,
+    "filename": "pet-mad-s-v1.5.0.ckpt",
+    "sha256": "9f55849d1e757ceefdd2d7ebd2374b543d7fdb8972d0b96fb9bc890eff3b6029",
+    "size_bytes": 110353539
+  },
+  "family": "PET-MAD-1.5",
+  "generated_at": "2026-05-19T06:45:54.027360+00:00",
+  "model": {
+    "architecture": "Point Edge Transformer",
+    "artifact_format": ".ckpt",
+    "base_model": "pet-mad",
+    "family": {
+      "element_count": 102,
+      "family": "PET-MAD-1.5",
+      "level_of_theory": "r2SCAN",
+      "scope": "materials and molecules",
+      "training_set": "OMat -> MAD-1.5"
+    },
+    "hyperparameters": {
+      "adaptive_neighbors": 16,
+      "attention_layers": 1,
+      "edge_feature_dim": 256,
+      "gnn_layers": 3,
+      "graph_cutoff_angstrom": 8.0,
+      "parameter_count": "25.9M"
+    },
+    "size": "s",
+    "unsupported_initial_runtime_features": [
+      "direct_non_conservative_forces",
+      "direct_non_conservative_stress",
+      "uncertainty",
+      "ensemble",
+      "rotational_averaging",
+      "dos",
+      "bandgap",
+      "torchscript_runtime",
+      "arbitrary_checkpoint_import"
+    ],
+    "version": "1.5.0"
+  },
+  "purpose": "PET/upet checkpoint provenance pin for PET-lite export and parity validation; Rust parity is not implied",
+  "python": {
+    "dependency_versions": {
+      "huggingface-hub": "1.15.0",
+      "metatomic-ase": "0.1.0",
+      "metatomic-torch": "0.1.11",
+      "metatrain": "2026.2.1",
+      "numpy": "2.4.6",
+      "torch": "2.10.0",
+      "upet": "0.2.3"
+    },
+    "executable": "python",
+    "python_version": "3.11.15"
+  },
+  "reference": {
+    "commit": "1f0b65c9efeb31abcfb9a14ca5859f0b3ce45e78",
+    "name": "upet",
+    "package_version": "0.2.3",
+    "repository": "https://github.com/lab-cosmo/upet"
+  },
+  "schema_version": "pet-upet-artifact-v1",
+  "scope": {
+    "conversion_note": "The checkpoint itself is not committed. Scoped `.e3rs` exports and compact JSON fixtures must be generated separately before Rust parity can be claimed.",
+    "normal_cargo_test_dependency": false,
+    "rust_runtime_dependency": false,
+    "status": "downloaded_reference_binary"
+  },
+  "selected_model": "pet-mad-s-v1.5.0",
+  "source": {
+    "checkpoint_path": "models/pet-mad-s-v1.5.0.ckpt",
+    "download_url": "https://huggingface.co/lab-cosmo/upet/resolve/c3193bbd2056a56186b86bf124db96647edd37aa/models/pet-mad-s-v1.5.0.ckpt",
+    "git_oid": "5125c7c15999f9a0e7f10aed71a95f4837ab3c6b",
+    "huggingface_last_modified": "2026-02-26T17:19:58.000Z",
+    "huggingface_license": "bsd-3-clause",
+    "huggingface_repo": "lab-cosmo/upet",
+    "huggingface_repo_sha": "c3193bbd2056a56186b86bf124db96647edd37aa",
+    "last_commit": {
+      "date": "2026-02-26T17:19:58.000Z",
+      "id": "c3193bbd2056a56186b86bf124db96647edd37aa",
+      "title": "Pre-release of the PET-MAD-1.5 models"
+    },
+    "lfs_pointer_size": 134,
+    "lfs_sha256": "9f55849d1e757ceefdd2d7ebd2374b543d7fdb8972d0b96fb9bc890eff3b6029",
+    "lfs_size_bytes": 110353539,
+    "pickle_imports": [
+      {
+        "module": "metatrain.utils.data.dataset",
+        "name": "DatasetInfo",
+        "safety": "suspicious"
+      },
+      {
+        "module": "torch",
+        "name": "ScriptObject",
+        "safety": "suspicious"
+      },
+      {
+        "module": "torch._utils",
+        "name": "_rebuild_tensor_v2",
+        "safety": "innocuous"
+      },
+      {
+        "module": "metatrain.utils.data.target_info",
+        "name": "TargetInfo",
+        "safety": "suspicious"
+      },
+      {
+        "module": "collections",
+        "name": "OrderedDict",
+        "safety": "innocuous"
+      },
+      {
+        "module": "torch",
+        "name": "ByteStorage",
+        "safety": "innocuous"
+      },
+      {
+        "module": "torch",
+        "name": "LongStorage",
+        "safety": "innocuous"
+      },
+      {
+        "module": "torch",
+        "name": "FloatStorage",
+        "safety": "innocuous"
+      }
+    ],
+    "size_bytes": 110353539,
+    "xet_hash": "ecf55357959336d3718e60affd5eded4f396355d4e8a844396cd515d380c649b"
+  }
+}

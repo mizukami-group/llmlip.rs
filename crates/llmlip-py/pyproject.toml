@@ -1,0 +1,27 @@
+[build-system]
+requires = ["maturin>=1.9,<2"]
+build-backend = "maturin"
+
+[project]
+name = "llmlip"
+version = "0.0.0"
+description = "Python bindings for llmlip fixed-weight MLIP inference"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+readme = "README.md"
+license = { text = "(MIT OR Apache-2.0) AND Apache-2.0 AND BSD-3-Clause AND Zlib" }
+
+[project.optional-dependencies]
+ase = ["ase>=3.22"]
+openmm = ["openmm>=8.5", "openmmml>=1.6"]
+test = ["pytest", "ase>=3.22"]
+test-openmm = ["pytest", "openmm>=8.5", "openmmml>=1.6"]
+
+[project.entry-points."openmmml.potentials"]
+llmlip = "llmlip.openmmml:LlmlipPotentialImplFactory"
+
+[tool.maturin]
+bindings = "pyo3"
+python-source = "python"
+module-name = "llmlip._llmlip"
+features = ["extension-module"]

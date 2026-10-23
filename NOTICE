@@ -1,0 +1,20 @@
+llmlip implementation notices
+
+ORB model implementation
+Reference: Orbital Materials, orb-models v0.6.2
+Revision: a5f1a382a72126feff0594b19891e03cde5f843e
+https://github.com/orbital-materials/orb-models
+
+crates/llmlip/src/orb_v3_omol.rs is conservatively distributed under Apache-2.0.
+References include common/models/gns.py AttentionInteractionNetwork.forward
+and common/models/nn_util.py ChargeSpinEmbedding.forward and get_cutoff.
+Changes: Rust storage and validation, fixed-weight inference, manual position
+VJPs, fused attention and CPU parallel/BLAS execution. This is modified code,
+not an unmodified upstream distribution. The full upstream Apache-2.0 license
+is retained in licenses/reference/orb.txt and LICENSE-APACHE.
+No separate upstream NOTICE file was present in the inspected pinned tree.
+This notice does not claim exclusive authorship of corresponding upstream work.
+
+Other implementation references and changes are recorded in
+LICENSE-THIRD-PARTY, THIRD_PARTY_LICENSES.md and docs/SOURCE_PROVENANCE.md.
+Preserve their referenced license texts with this source distribution.

@@ -1,0 +1,22 @@
+{
+  "artifact_path": "outputs/reference-artifacts/mace/MACE-POLAR-1-S.model",
+  "available_models": [
+    "polar-1-l",
+    "polar-1-m",
+    "polar-1-s"
+  ],
+  "byte_size": 33375439,
+  "cache_replaced": false,
+  "downloaded_this_run": false,
+  "expected_sha256": "e4495612037b3b3312633182882a38a694ecac9ea0be2b9889ac0b2a84a99510",
+  "family": "PolarMACE",
+  "mace_commit": "4d2da09413ac1407f37cdbb6b81fa28e4c15655e",
+  "mace_package_version": "0.3.16",
+  "model_file_tracked_in_git": false,
+  "normal_cargo_test_dependency": false,
+  "schema_version": "polarmace-artifact-manifest-v1",
+  "selected_model": "polar-1-s",
+  "sha256": "e4495612037b3b3312633182882a38a694ecac9ea0be2b9889ac0b2a84a99510",
+  "source_file": "third_party/mace/mace/calculators/foundations_models.py",
+  "source_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_polar_1/MACE-POLAR-1-S.model"
+}

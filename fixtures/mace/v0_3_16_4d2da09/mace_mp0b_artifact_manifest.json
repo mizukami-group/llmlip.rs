@@ -1,0 +1,37 @@
+{
+  "artifact": {
+    "binary_tracked_by_git": false,
+    "cache_path": "outputs/reference-artifacts/mace/mace-mp-0b3-medium.model",
+    "downloaded": true,
+    "filename": "mace-mp-0b3-medium.model",
+    "sha256": "2f2be696351ac9e94fbe01cdfb6f017679acdbd2db7645209ef55fec9826b012",
+    "size_bytes": 79472952
+  },
+  "family": "MACE-MP-0b",
+  "generated_at": "2026-05-13T08:24:54.724638+00:00",
+  "purpose": "representative fixed artifact for MACE-lite export and parity validation",
+  "python": {
+    "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "python_version": "3.9.6"
+  },
+  "reference": {
+    "commit": "4d2da09413ac1407f37cdbb6b81fa28e4c15655e",
+    "name": "mace",
+    "package_version": "0.3.16",
+    "repository": "https://github.com/ACEsuit/mace"
+  },
+  "schema_version": "mace-mp0b-artifact-v1",
+  "scope": {
+    "conversion_note": "The binary itself is not committed. Scoped `.e3rs` conversion artifacts are generated separately by generate_mace_fixtures.py.",
+    "normal_cargo_test_dependency": false,
+    "rust_runtime_dependency": false,
+    "status": "downloaded_reference_binary"
+  },
+  "selected_model": "medium-0b3",
+  "source": {
+    "license": "MIT according to the pinned MACE README MACE-MP table",
+    "source_file": "third_party/mace/mace/calculators/foundations_models.py",
+    "url": "https://github.com/ACEsuit/mace-mp/releases/download/mace_mp_0b3/mace-mp-0b3-medium.model",
+    "url_key": "medium-0b3"
+  }
+}

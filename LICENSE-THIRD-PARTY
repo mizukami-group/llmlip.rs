@@ -1,0 +1,43 @@
+Numerical helper attribution
+============================
+
+Cephes-derived numerical approximations and coefficient tables occur in:
+- crates/llmlip/src/mace_polar.rs: polar_mace_erfc_cephes_positive,
+  polar_mace_polevl and polar_mace_p1evl.
+- crates/llmlip/src/blas_backend.rs: exp_ps_avx512.
+
+Copyright 1984, 1987, 1988, 1992 by Stephen L. Moshier
+(ndtr/erfc source header retained by SciPy).
+The accompanying Cephes notice additionally retains the 1984, 1995, 2000
+copyright statement used by SciPy's bundled-license notice.
+
+This software includes numerical material derived from the Cephes Math Library.
+The Cephes notice and BSD-3-Clause conditions are reproduced verbatim in
+licenses/reference/cephes.txt from SciPy v1.15.0, commit
+6e246d0b54dd55dc69232a0caae6772228a7ac25, LICENSES_bundled.txt, Name: Cephes.
+Source: https://github.com/scipy/scipy/blob/6e246d0b54dd55dc69232a0caae6772228a7ac25/LICENSES_bundled.txt
+SciPy records distribution under BSD-3-Clause with permission from the author.
+Its original placeholders and wording have not been silently rewritten.
+
+Changes in this project: Rust scalar polynomial evaluation, shortened decimal
+coefficient literals, restricted positive erfc domain and underflow handling;
+AVX-512/FMA exponential evaluation, conversion-based range reduction, scalef
+reconstruction, and clamping to [-88, 88]. These are altered implementations,
+not the original Cephes or SSE source files. The erfc helper currently has no
+call sites; the AVX-512 helper is used by the x86 parallel UMA path.
+
+The exponential constants also occur in Julien Pommier's sse_mathfun, with
+extensions by RJVB. Its unchanged copyright and zlib license notice is retained
+in licenses/reference/sse-mathfun.txt as a conservative additional attribution.
+Comparison: https://github.com/RJVB/sse_mathfun/blob/0f462645698320643decdb5f79d211733b2a97d6/sse_mathfun.h
+This records a verified correspondence, not proof that this particular revision
+was the file historically consulted. The Rust SIMD implementation differs as
+specified above. Any applicable upstream obligations remain in force.
+
+Retain these notices with source redistributions and include the required
+copyright/license/disclaimer text in documentation or other materials with
+binary redistributions. Original project contributions may remain MIT OR
+Apache-2.0; that choice does not remove the retained third-party conditions.
+
+For model implementation references and further third-party license texts,
+see docs/SOURCE_PROVENANCE.md and THIRD_PARTY_LICENSES.md.

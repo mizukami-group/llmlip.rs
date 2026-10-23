@@ -1,0 +1,38 @@
+[package]
+name = "llmlip-capi"
+version = "0.0.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+crate-type = ["cdylib", "staticlib", "rlib"]
+
+[lints.rust]
+unsafe_code = "allow"
+
+[lints.clippy]
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"
+todo = "warn"
+indexing_slicing = "allow"
+
+[dependencies]
+llmlip.workspace = true
+thiserror.workspace = true
+
+[features]
+default = []
+embed-model = ["llmlip/embed-model"]
+baked-mace-oam-medium = ["llmlip/baked-mace-oam-medium"]
+accelerate-blas = ["llmlip/accelerate-blas"]
+apple-metal = ["llmlip/apple-metal"]
+intel-mkl = ["llmlip/intel-mkl"]
+intel-mkl-threaded = ["llmlip/intel-mkl-threaded"]
+openblas = ["llmlip/openblas"]
+libxsmm = ["llmlip/libxsmm"]
+small-gemm-bypass = ["llmlip/small-gemm-bypass"]
+orb-f32-edge-mlp = ["llmlip/orb-f32-edge-mlp"]
+parallel = ["llmlip/parallel"]

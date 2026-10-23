@@ -1,0 +1,2279 @@
+{
+  "artifact": {
+    "filename": "mace-mp-0b3-medium.model",
+    "selected_model": "medium-0b3",
+    "sha256": "2f2be696351ac9e94fbe01cdfb6f017679acdbd2db7645209ef55fec9826b012",
+    "size_bytes": 79472952
+  },
+  "artifact_manifest": "fixtures/mace/v0_3_16_4d2da09/mace_mp0b_artifact_manifest.json",
+  "environment": {
+    "e3nn_version": "0.4.4",
+    "mace_version": "0.3.16",
+    "python_version": "3.9.6",
+    "torch_version": "2.8.0"
+  },
+  "interaction_blocks": [
+    {
+      "avg_num_neighbors": 61.964672446250916,
+      "class": "mace.modules.blocks.RealAgnosticDensityInteractionBlock",
+      "edge_attrs_irreps": [
+        [
+          1,
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          1,
+          [
+            1,
+            -1
+          ]
+        ],
+        [
+          1,
+          [
+            2,
+            1
+          ]
+        ],
+        [
+          1,
+          [
+            3,
+            -1
+          ]
+        ]
+      ],
+      "edge_feats_irreps": [
+        [
+          10,
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "hidden_irreps": [
+        [
+          128,
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          128,
+          [
+            1,
+            -1
+          ]
+        ]
+      ],
+      "index": 0,
+      "node_attrs_irreps": [
+        [
+          89,
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "node_feats_irreps": [
+        [
+          128,
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "radial_MLP": [
+        64,
+        64,
+        64
+      ],
+      "submodules": [
+        {
+          "buffers": [
+            {
+              "dtype": "torch.float64",
+              "name": "bias",
+              "nonzero": 0,
+              "requires_grad": false,
+              "shape": [
+                0
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "output_mask",
+              "nonzero": 128,
+              "requires_grad": false,
+              "shape": [
+                128
+              ]
+            }
+          ],
+          "class": "e3nn.o3._linear.Linear",
+          "instructions": 1,
+          "irreps_in": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "irreps_out": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "name": "linear_up",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "weight",
+              "nonzero": 16384,
+              "requires_grad": true,
+              "shape": [
+                16384
+              ]
+            }
+          ],
+          "weight_numel": 16384
+        },
+        {
+          "buffers": [
+            {
+              "dtype": "torch.float64",
+              "name": "weight",
+              "nonzero": 0,
+              "requires_grad": false,
+              "shape": [
+                0
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "output_mask",
+              "nonzero": 2048,
+              "requires_grad": false,
+              "shape": [
+                2048
+              ]
+            }
+          ],
+          "class": "e3nn.o3._tensor_product._tensor_product.TensorProduct",
+          "instructions": 4,
+          "irreps_out": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                3,
+                -1
+              ]
+            ]
+          ],
+          "name": "conv_tp",
+          "parameters": [],
+          "weight_numel": 512
+        },
+        {
+          "buffers": [],
+          "class": "e3nn.nn._fc.FullyConnectedNet",
+          "hs": [
+            10,
+            64,
+            64,
+            64,
+            512
+          ],
+          "name": "conv_tp_weights",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "layer0.weight",
+              "nonzero": 640,
+              "requires_grad": true,
+              "shape": [
+                10,
+                64
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "layer1.weight",
+              "nonzero": 4096,
+              "requires_grad": true,
+              "shape": [
+                64,
+                64
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "layer2.weight",
+              "nonzero": 4096,
+              "requires_grad": true,
+              "shape": [
+                64,
+                64
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "layer3.weight",
+              "nonzero": 32768,
+              "requires_grad": true,
+              "shape": [
+                64,
+                512
+              ]
+            }
+          ]
+        },
+        {
+          "buffers": [
+            {
+              "dtype": "torch.float64",
+              "name": "bias",
+              "nonzero": 0,
+              "requires_grad": false,
+              "shape": [
+                0
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "output_mask",
+              "nonzero": 2048,
+              "requires_grad": false,
+              "shape": [
+                2048
+              ]
+            }
+          ],
+          "class": "e3nn.o3._linear.Linear",
+          "instructions": 4,
+          "irreps_in": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                3,
+                -1
+              ]
+            ]
+          ],
+          "irreps_out": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                3,
+                -1
+              ]
+            ]
+          ],
+          "name": "linear",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "weight",
+              "nonzero": 65536,
+              "requires_grad": true,
+              "shape": [
+                65536
+              ]
+            }
+          ],
+          "weight_numel": 65536
+        },
+        {
+          "buffers": [
+            {
+              "dtype": "torch.float64",
+              "name": "output_mask",
+              "nonzero": 2048,
+              "requires_grad": false,
+              "shape": [
+                2048
+              ]
+            }
+          ],
+          "class": "e3nn.o3._tensor_product._sub.FullyConnectedTensorProduct",
+          "instructions": 4,
+          "irreps_out": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                3,
+                -1
+              ]
+            ]
+          ],
+          "name": "skip_tp",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "weight",
+              "nonzero": 5832704,
+              "requires_grad": true,
+              "shape": [
+                5832704
+              ]
+            }
+          ],
+          "weight_numel": 5832704
+        },
+        {
+          "buffers": [],
+          "class": "e3nn.nn._fc.FullyConnectedNet",
+          "hs": [
+            10,
+            1
+          ],
+          "name": "density_fn",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "layer0.weight",
+              "nonzero": 10,
+              "requires_grad": true,
+              "shape": [
+                10,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "buffers": [],
+          "class": "mace.modules.irreps_tools.reshape_irreps",
+          "dims": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "name": "reshape",
+          "parameters": []
+        }
+      ],
+      "target_irreps": [
+        [
+          128,
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          128,
+          [
+            1,
+            -1
+          ]
+        ],
+        [
+          128,
+          [
+            2,
+            1
+          ]
+        ],
+        [
+          128,
+          [
+            3,
+            -1
+          ]
+        ]
+      ]
+    },
+    {
+      "avg_num_neighbors": 61.964672446250916,
+      "class": "mace.modules.blocks.RealAgnosticDensityResidualInteractionBlock",
+      "edge_attrs_irreps": [
+        [
+          1,
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          1,
+          [
+            1,
+            -1
+          ]
+        ],
+        [
+          1,
+          [
+            2,
+            1
+          ]
+        ],
+        [
+          1,
+          [
+            3,
+            -1
+          ]
+        ]
+      ],
+      "edge_feats_irreps": [
+        [
+          10,
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "hidden_irreps": "128x0e",
+      "index": 1,
+      "node_attrs_irreps": [
+        [
+          89,
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "node_feats_irreps": [
+        [
+          128,
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          128,
+          [
+            1,
+            -1
+          ]
+        ]
+      ],
+      "radial_MLP": [
+        64,
+        64,
+        64
+      ],
+      "submodules": [
+        {
+          "buffers": [
+            {
+              "dtype": "torch.float64",
+              "name": "bias",
+              "nonzero": 0,
+              "requires_grad": false,
+              "shape": [
+                0
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "output_mask",
+              "nonzero": 512,
+              "requires_grad": false,
+              "shape": [
+                512
+              ]
+            }
+          ],
+          "class": "e3nn.o3._linear.Linear",
+          "instructions": 2,
+          "irreps_in": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ]
+          ],
+          "irreps_out": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ]
+          ],
+          "name": "linear_up",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "weight",
+              "nonzero": 32768,
+              "requires_grad": true,
+              "shape": [
+                32768
+              ]
+            }
+          ],
+          "weight_numel": 32768
+        },
+        {
+          "buffers": [
+            {
+              "dtype": "torch.float64",
+              "name": "weight",
+              "nonzero": 0,
+              "requires_grad": false,
+              "shape": [
+                0
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "output_mask",
+              "nonzero": 5120,
+              "requires_grad": false,
+              "shape": [
+                5120
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "_compiled_main_left_right._w3j_1_2_1",
+              "nonzero": 11,
+              "requires_grad": false,
+              "shape": [
+                3,
+                5,
+                3
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "_compiled_main_left_right._w3j_1_1_2",
+              "nonzero": 11,
+              "requires_grad": false,
+              "shape": [
+                3,
+                3,
+                5
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "_compiled_main_left_right._w3j_1_3_2",
+              "nonzero": 21,
+              "requires_grad": false,
+              "shape": [
+                3,
+                7,
+                5
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "_compiled_main_left_right._w3j_1_2_3",
+              "nonzero": 21,
+              "requires_grad": false,
+              "shape": [
+                3,
+                5,
+                7
+              ]
+            }
+          ],
+          "class": "e3nn.o3._tensor_product._tensor_product.TensorProduct",
+          "instructions": 10,
+          "irreps_out": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                3,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                3,
+                -1
+              ]
+            ]
+          ],
+          "name": "conv_tp",
+          "parameters": [],
+          "weight_numel": 1280
+        },
+        {
+          "buffers": [],
+          "class": "e3nn.nn._fc.FullyConnectedNet",
+          "hs": [
+            10,
+            64,
+            64,
+            64,
+            1280
+          ],
+          "name": "conv_tp_weights",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "layer0.weight",
+              "nonzero": 640,
+              "requires_grad": true,
+              "shape": [
+                10,
+                64
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "layer1.weight",
+              "nonzero": 4096,
+              "requires_grad": true,
+              "shape": [
+                64,
+                64
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "layer2.weight",
+              "nonzero": 4096,
+              "requires_grad": true,
+              "shape": [
+                64,
+                64
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "layer3.weight",
+              "nonzero": 81920,
+              "requires_grad": true,
+              "shape": [
+                64,
+                1280
+              ]
+            }
+          ]
+        },
+        {
+          "buffers": [
+            {
+              "dtype": "torch.float64",
+              "name": "bias",
+              "nonzero": 0,
+              "requires_grad": false,
+              "shape": [
+                0
+              ]
+            },
+            {
+              "dtype": "torch.float64",
+              "name": "output_mask",
+              "nonzero": 2048,
+              "requires_grad": false,
+              "shape": [
+                2048
+              ]
+            }
+          ],
+          "class": "e3nn.o3._linear.Linear",
+          "instructions": 10,
+          "irreps_in": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                3,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                3,
+                -1
+              ]
+            ]
+          ],
+          "irreps_out": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                1,
+                -1
+              ]
+            ],
+            [
+              128,
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              128,
+              [
+                3,
+                -1
+              ]
+            ]
+          ],
+          "name": "linear",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "weight",
+              "nonzero": 163840,
+              "requires_grad": true,
+              "shape": [
+                163840
+              ]
+            }
+          ],
+          "weight_numel": 163840
+        },
+        {
+          "buffers": [
+            {
+              "dtype": "torch.float64",
+              "name": "output_mask",
+              "nonzero": 128,
+              "requires_grad": false,
+              "shape": [
+                128
+              ]
+            }
+          ],
+          "class": "e3nn.o3._tensor_product._sub.FullyConnectedTensorProduct",
+          "instructions": 1,
+          "irreps_out": [
+            [
+              128,
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "name": "skip_tp",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "weight",
+              "nonzero": 1458176,
+              "requires_grad": true,
+              "shape": [
+                1458176
+              ]
+            }
+          ],
+          "weight_numel": 1458176
+        },
+        {
+          "buffers": [],
+          "class": "e3nn.nn._fc.FullyConnectedNet",
+          "hs": [
+            10,
+            1
+          ],
+          "name": "density_fn",
+          "parameters": [
+            {
+              "dtype": "torch.float64",
+              "name": "layer0.weight",
+              "nonzero": 10,
+              "requires_grad": true,
+              "shape": [
+                10,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "buffers": [],
+          "class": "mace.modules.irreps_tools.reshape_irreps",
+          "dims": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "name": "reshape",
+          "parameters": []
+        }
+      ],
+      "target_irreps": [
+        [
+          128,
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          128,
+          [
+            1,
+            -1
+          ]
+        ],
+        [
+          128,
+          [
+            2,
+            1
+          ]
+        ],
+        [
+          128,
+          [
+            3,
+            -1
+          ]
+        ]
+      ]
+    }
+  ],
+  "mace_lite_gap_analysis": [
+    {
+      "feature": "pair_repulsion",
+      "observed": "mace.modules.radial.ZBLBasis",
+      "status": "unsupported_in_initial_mace_lite"
+    },
+    {
+      "feature": "density_interaction_blocks",
+      "observed": "RealAgnosticDensityInteractionBlock, RealAgnosticDensityResidualInteractionBlock",
+      "status": "unsupported_in_initial_mace_lite"
+    },
+    {
+      "feature": "angular_bandlimit",
+      "observed": "l_max=3",
+      "status": "beyond_first_lmax2_mace_lite_slice"
+    }
+  ],
+  "model": {
+    "atomic_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94
+    ],
+    "class": "mace.modules.models.ScaleShiftMACE",
+    "heads": [
+      "default"
+    ],
+    "num_interactions": 2,
+    "num_parameters": 9063204,
+    "observed_max_l": 3,
+    "parameter_dtypes": [
+      "torch.float64"
+    ],
+    "r_max": 6.0
+  },
+  "module_class_counts": [
+    {
+      "class": "e3nn.math._normalize_activation.normalize2mom",
+      "count": 3
+    },
+    {
+      "class": "e3nn.nn._activation.Activation",
+      "count": 1
+    },
+    {
+      "class": "e3nn.nn._fc.FullyConnectedNet",
+      "count": 4
+    },
+    {
+      "class": "e3nn.nn._fc._Layer",
+      "count": 10
+    },
+    {
+      "class": "e3nn.o3._linear.Linear",
+      "count": 10
+    },
+    {
+      "class": "e3nn.o3._spherical_harmonics.SphericalHarmonics",
+      "count": 1
+    },
+    {
+      "class": "e3nn.o3._tensor_product._sub.FullyConnectedTensorProduct",
+      "count": 2
+    },
+    {
+      "class": "e3nn.o3._tensor_product._tensor_product.TensorProduct",
+      "count": 2
+    },
+    {
+      "class": "mace.modules.blocks.AtomicEnergiesBlock",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.blocks.EquivariantProductBasisBlock",
+      "count": 2
+    },
+    {
+      "class": "mace.modules.blocks.LinearNodeEmbeddingBlock",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.blocks.LinearReadoutBlock",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.blocks.NonLinearReadoutBlock",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.blocks.RadialEmbeddingBlock",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.blocks.RealAgnosticDensityInteractionBlock",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.blocks.RealAgnosticDensityResidualInteractionBlock",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.blocks.ScaleShiftBlock",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.irreps_tools.reshape_irreps",
+      "count": 2
+    },
+    {
+      "class": "mace.modules.models.ScaleShiftMACE",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.radial.AgnesiTransform",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.radial.BesselBasis",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.radial.PolynomialCutoff",
+      "count": 2
+    },
+    {
+      "class": "mace.modules.radial.ZBLBasis",
+      "count": 1
+    },
+    {
+      "class": "mace.modules.symmetric_contraction.Contraction",
+      "count": 3
+    },
+    {
+      "class": "mace.modules.symmetric_contraction.SymmetricContraction",
+      "count": 2
+    },
+    {
+      "class": "torch.fx.graph_module.GraphModule",
+      "count": 15
+    },
+    {
+      "class": "torch.jit._script.RecursiveScriptModule",
+      "count": 18
+    },
+    {
+      "class": "torch.nn.modules.container.ModuleList",
+      "count": 12
+    },
+    {
+      "class": "torch.nn.modules.container.ParameterList",
+      "count": 3
+    }
+  ],
+  "product_blocks": [
+    {
+      "class": "mace.modules.blocks.EquivariantProductBasisBlock",
+      "index": 0,
+      "symmetric_contractions": {
+        "class": "mace.modules.symmetric_contraction.SymmetricContraction",
+        "contractions": [
+          {
+            "buffers": {
+              "U_matrix_1": {
+                "dtype": "torch.float64",
+                "nonzero": 1,
+                "requires_grad": false,
+                "shape": [
+                  16,
+                  1
+                ]
+              },
+              "U_matrix_2": {
+                "dtype": "torch.float64",
+                "nonzero": 16,
+                "requires_grad": false,
+                "shape": [
+                  16,
+                  16,
+                  4
+                ]
+              },
+              "U_matrix_3": {
+                "dtype": "torch.float64",
+                "nonzero": 353,
+                "requires_grad": false,
+                "shape": [
+                  16,
+                  16,
+                  16,
+                  23
+                ]
+              }
+            },
+            "class": "mace.modules.symmetric_contraction.Contraction",
+            "correlation": 3,
+            "coupling_irreps": [
+              [
+                1,
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                1,
+                [
+                  1,
+                  -1
+                ]
+              ],
+              [
+                1,
+                [
+                  2,
+                  1
+                ]
+              ],
+              [
+                1,
+                [
+                  3,
+                  -1
+                ]
+              ]
+            ],
+            "name": "contractions.0",
+            "num_features": 128,
+            "parameters": {
+              "weights_max": {
+                "dtype": "torch.float64",
+                "nonzero": 262016,
+                "requires_grad": true,
+                "shape": [
+                  89,
+                  23,
+                  128
+                ]
+              }
+            },
+            "weights": [
+              {
+                "dtype": "torch.float64",
+                "index": 0,
+                "nonzero": 45568,
+                "requires_grad": true,
+                "shape": [
+                  89,
+                  4,
+                  128
+                ]
+              },
+              {
+                "dtype": "torch.float64",
+                "index": 1,
+                "nonzero": 11392,
+                "requires_grad": true,
+                "shape": [
+                  89,
+                  1,
+                  128
+                ]
+              }
+            ],
+            "weights_max": {
+              "dtype": "torch.float64",
+              "nonzero": 262016,
+              "requires_grad": true,
+              "shape": [
+                89,
+                23,
+                128
+              ]
+            }
+          },
+          {
+            "buffers": {
+              "U_matrix_1": {
+                "dtype": "torch.float64",
+                "nonzero": 3,
+                "requires_grad": false,
+                "shape": [
+                  3,
+                  16,
+                  1
+                ]
+              },
+              "U_matrix_2": {
+                "dtype": "torch.float64",
+                "nonzero": 70,
+                "requires_grad": false,
+                "shape": [
+                  3,
+                  16,
+                  16,
+                  6
+                ]
+              },
+              "U_matrix_3": {
+                "dtype": "torch.float64",
+                "nonzero": 2846,
+                "requires_grad": false,
+                "shape": [
+                  3,
+                  16,
+                  16,
+                  16,
+                  51
+                ]
+              }
+            },
+            "class": "mace.modules.symmetric_contraction.Contraction",
+            "correlation": 3,
+            "coupling_irreps": [
+              [
+                1,
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                1,
+                [
+                  1,
+                  -1
+                ]
+              ],
+              [
+                1,
+                [
+                  2,
+                  1
+                ]
+              ],
+              [
+                1,
+                [
+                  3,
+                  -1
+                ]
+              ]
+            ],
+            "name": "contractions.1",
+            "num_features": 128,
+            "parameters": {
+              "weights_max": {
+                "dtype": "torch.float64",
+                "nonzero": 580992,
+                "requires_grad": true,
+                "shape": [
+                  89,
+                  51,
+                  128
+                ]
+              }
+            },
+            "weights": [
+              {
+                "dtype": "torch.float64",
+                "index": 0,
+                "nonzero": 68352,
+                "requires_grad": true,
+                "shape": [
+                  89,
+                  6,
+                  128
+                ]
+              },
+              {
+                "dtype": "torch.float64",
+                "index": 1,
+                "nonzero": 11392,
+                "requires_grad": true,
+                "shape": [
+                  89,
+                  1,
+                  128
+                ]
+              }
+            ],
+            "weights_max": {
+              "dtype": "torch.float64",
+              "nonzero": 580992,
+              "requires_grad": true,
+              "shape": [
+                89,
+                51,
+                128
+              ]
+            }
+          }
+        ],
+        "internal_weights": true,
+        "irreps_in": [
+          [
+            128,
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            128,
+            [
+              1,
+              -1
+            ]
+          ],
+          [
+            128,
+            [
+              2,
+              1
+            ]
+          ],
+          [
+            128,
+            [
+              3,
+              -1
+            ]
+          ]
+        ],
+        "irreps_out": [
+          [
+            128,
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            128,
+            [
+              1,
+              -1
+            ]
+          ]
+        ],
+        "shared_weights": null
+      },
+      "use_agnostic_product": null,
+      "use_sc": false
+    },
+    {
+      "class": "mace.modules.blocks.EquivariantProductBasisBlock",
+      "index": 1,
+      "symmetric_contractions": {
+        "class": "mace.modules.symmetric_contraction.SymmetricContraction",
+        "contractions": [
+          {
+            "buffers": {
+              "U_matrix_1": {
+                "dtype": "torch.float64",
+                "nonzero": 1,
+                "requires_grad": false,
+                "shape": [
+                  16,
+                  1
+                ]
+              },
+              "U_matrix_2": {
+                "dtype": "torch.float64",
+                "nonzero": 16,
+                "requires_grad": false,
+                "shape": [
+                  16,
+                  16,
+                  4
+                ]
+              },
+              "U_matrix_3": {
+                "dtype": "torch.float64",
+                "nonzero": 353,
+                "requires_grad": false,
+                "shape": [
+                  16,
+                  16,
+                  16,
+                  23
+                ]
+              }
+            },
+            "class": "mace.modules.symmetric_contraction.Contraction",
+            "correlation": 3,
+            "coupling_irreps": [
+              [
+                1,
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                1,
+                [
+                  1,
+                  -1
+                ]
+              ],
+              [
+                1,
+                [
+                  2,
+                  1
+                ]
+              ],
+              [
+                1,
+                [
+                  3,
+                  -1
+                ]
+              ]
+            ],
+            "name": "contractions.0",
+            "num_features": 128,
+            "parameters": {
+              "weights_max": {
+                "dtype": "torch.float64",
+                "nonzero": 262016,
+                "requires_grad": true,
+                "shape": [
+                  89,
+                  23,
+                  128
+                ]
+              }
+            },
+            "weights": [
+              {
+                "dtype": "torch.float64",
+                "index": 0,
+                "nonzero": 45568,
+                "requires_grad": true,
+                "shape": [
+                  89,
+                  4,
+                  128
+                ]
+              },
+              {
+                "dtype": "torch.float64",
+                "index": 1,
+                "nonzero": 11392,
+                "requires_grad": true,
+                "shape": [
+                  89,
+                  1,
+                  128
+                ]
+              }
+            ],
+            "weights_max": {
+              "dtype": "torch.float64",
+              "nonzero": 262016,
+              "requires_grad": true,
+              "shape": [
+                89,
+                23,
+                128
+              ]
+            }
+          }
+        ],
+        "internal_weights": true,
+        "irreps_in": [
+          [
+            128,
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            128,
+            [
+              1,
+              -1
+            ]
+          ],
+          [
+            128,
+            [
+              2,
+              1
+            ]
+          ],
+          [
+            128,
+            [
+              3,
+              -1
+            ]
+          ]
+        ],
+        "irreps_out": [
+          [
+            128,
+            [
+              0,
+              1
+            ]
+          ]
+        ],
+        "shared_weights": null
+      },
+      "use_agnostic_product": null,
+      "use_sc": true
+    }
+  ],
+  "readout_blocks": [
+    {
+      "class": "mace.modules.blocks.LinearReadoutBlock",
+      "index": 0
+    },
+    {
+      "class": "mace.modules.blocks.NonLinearReadoutBlock",
+      "hidden_irreps": [
+        [
+          16,
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "index": 1
+    }
+  ],
+  "schema_version": "mace-mp0b-inspection-v1",
+  "state_dict_coverage": {
+    "covered_state_tensor_count": 64,
+    "covered_state_tensor_names": [
+      "node_embedding.linear.weight",
+      "node_embedding.linear.output_mask",
+      "radial_embedding.distance_transform.q",
+      "radial_embedding.distance_transform.p",
+      "radial_embedding.distance_transform.a",
+      "pair_repulsion_fn.c",
+      "pair_repulsion_fn.p",
+      "pair_repulsion_fn.a_exp",
+      "pair_repulsion_fn.a_prefactor",
+      "atomic_energies_fn.atomic_energies",
+      "interactions.0.linear_up.weight",
+      "interactions.0.linear_up.output_mask",
+      "interactions.0.conv_tp.output_mask",
+      "interactions.0.conv_tp_weights.layer0.weight",
+      "interactions.0.conv_tp_weights.layer1.weight",
+      "interactions.0.conv_tp_weights.layer2.weight",
+      "interactions.0.conv_tp_weights.layer3.weight",
+      "interactions.0.linear.weight",
+      "interactions.0.linear.output_mask",
+      "interactions.0.skip_tp.weight",
+      "interactions.0.skip_tp.output_mask",
+      "interactions.0.density_fn.layer0.weight",
+      "interactions.1.linear_up.weight",
+      "interactions.1.linear_up.output_mask",
+      "interactions.1.conv_tp.output_mask",
+      "interactions.1.conv_tp_weights.layer0.weight",
+      "interactions.1.conv_tp_weights.layer1.weight",
+      "interactions.1.conv_tp_weights.layer2.weight",
+      "interactions.1.conv_tp_weights.layer3.weight",
+      "interactions.1.linear.weight",
+      "interactions.1.linear.output_mask",
+      "interactions.1.skip_tp.weight",
+      "interactions.1.skip_tp.output_mask",
+      "interactions.1.density_fn.layer0.weight",
+      "products.0.symmetric_contractions.contractions.0.weights_max",
+      "products.0.symmetric_contractions.contractions.0.U_matrix_1",
+      "products.0.symmetric_contractions.contractions.0.U_matrix_2",
+      "products.0.symmetric_contractions.contractions.0.U_matrix_3",
+      "products.0.symmetric_contractions.contractions.0.weights.0",
+      "products.0.symmetric_contractions.contractions.0.weights.1",
+      "products.0.symmetric_contractions.contractions.1.weights_max",
+      "products.0.symmetric_contractions.contractions.1.U_matrix_1",
+      "products.0.symmetric_contractions.contractions.1.U_matrix_2",
+      "products.0.symmetric_contractions.contractions.1.U_matrix_3",
+      "products.0.symmetric_contractions.contractions.1.weights.0",
+      "products.0.symmetric_contractions.contractions.1.weights.1",
+      "products.0.linear.weight",
+      "products.0.linear.output_mask",
+      "products.1.symmetric_contractions.contractions.0.weights_max",
+      "products.1.symmetric_contractions.contractions.0.U_matrix_1",
+      "products.1.symmetric_contractions.contractions.0.U_matrix_2",
+      "products.1.symmetric_contractions.contractions.0.U_matrix_3",
+      "products.1.symmetric_contractions.contractions.0.weights.0",
+      "products.1.symmetric_contractions.contractions.0.weights.1",
+      "products.1.linear.weight",
+      "products.1.linear.output_mask",
+      "readouts.0.linear.weight",
+      "readouts.0.linear.output_mask",
+      "readouts.1.linear_1.weight",
+      "readouts.1.linear_1.output_mask",
+      "readouts.1.linear_2.weight",
+      "readouts.1.linear_2.output_mask",
+      "scale_shift.scale",
+      "scale_shift.shift"
+    ],
+    "extra_runtime_tensor_count": 0,
+    "extra_runtime_tensor_names": [],
+    "full_state_tensor_count": 93,
+    "missing_classification_counts": [
+      {
+        "classification": "compiled_tensor_product_wigner_buffer",
+        "count": 4
+      },
+      {
+        "classification": "deterministic_bessel_metadata",
+        "count": 3
+      },
+      {
+        "classification": "distance_transform_covalent_radii_buffer",
+        "count": 1
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "count": 10
+      },
+      {
+        "classification": "empty_internal_weight_tensor",
+        "count": 2
+      },
+      {
+        "classification": "model_metadata_constant",
+        "count": 3
+      },
+      {
+        "classification": "pair_repulsion_covalent_radii_buffer",
+        "count": 1
+      },
+      {
+        "classification": "pair_repulsion_cutoff_metadata",
+        "count": 3
+      },
+      {
+        "classification": "radial_cutoff_metadata",
+        "count": 2
+      }
+    ],
+    "missing_nonzero_numel": 410,
+    "missing_numel": 646,
+    "missing_state_tensor_count": 29,
+    "missing_state_tensors": [
+      {
+        "classification": "model_metadata_constant",
+        "dtype": "torch.int64",
+        "kind": "buffer",
+        "name": "atomic_numbers",
+        "nonzero": 89,
+        "numel": 89,
+        "requires_grad": false,
+        "shape": [
+          89
+        ]
+      },
+      {
+        "classification": "model_metadata_constant",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "r_max",
+        "nonzero": 1,
+        "numel": 1,
+        "requires_grad": false,
+        "shape": []
+      },
+      {
+        "classification": "model_metadata_constant",
+        "dtype": "torch.int64",
+        "kind": "buffer",
+        "name": "num_interactions",
+        "nonzero": 1,
+        "numel": 1,
+        "requires_grad": false,
+        "shape": []
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "node_embedding.linear.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "deterministic_bessel_metadata",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "radial_embedding.bessel_fn.bessel_weights",
+        "nonzero": 10,
+        "numel": 10,
+        "requires_grad": false,
+        "shape": [
+          10
+        ]
+      },
+      {
+        "classification": "deterministic_bessel_metadata",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "radial_embedding.bessel_fn.r_max",
+        "nonzero": 1,
+        "numel": 1,
+        "requires_grad": false,
+        "shape": []
+      },
+      {
+        "classification": "deterministic_bessel_metadata",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "radial_embedding.bessel_fn.prefactor",
+        "nonzero": 1,
+        "numel": 1,
+        "requires_grad": false,
+        "shape": []
+      },
+      {
+        "classification": "distance_transform_covalent_radii_buffer",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "radial_embedding.distance_transform.covalent_radii",
+        "nonzero": 119,
+        "numel": 119,
+        "requires_grad": false,
+        "shape": [
+          119
+        ]
+      },
+      {
+        "classification": "radial_cutoff_metadata",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "radial_embedding.cutoff_fn.p",
+        "nonzero": 1,
+        "numel": 1,
+        "requires_grad": false,
+        "shape": []
+      },
+      {
+        "classification": "radial_cutoff_metadata",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "radial_embedding.cutoff_fn.r_max",
+        "nonzero": 1,
+        "numel": 1,
+        "requires_grad": false,
+        "shape": []
+      },
+      {
+        "classification": "pair_repulsion_cutoff_metadata",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "pair_repulsion_fn.r_max",
+        "nonzero": 1,
+        "numel": 1,
+        "requires_grad": false,
+        "shape": []
+      },
+      {
+        "classification": "pair_repulsion_covalent_radii_buffer",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "pair_repulsion_fn.covalent_radii",
+        "nonzero": 119,
+        "numel": 119,
+        "requires_grad": false,
+        "shape": [
+          119
+        ]
+      },
+      {
+        "classification": "pair_repulsion_cutoff_metadata",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "pair_repulsion_fn.cutoff.p",
+        "nonzero": 1,
+        "numel": 1,
+        "requires_grad": false,
+        "shape": []
+      },
+      {
+        "classification": "pair_repulsion_cutoff_metadata",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "pair_repulsion_fn.cutoff.r_max",
+        "nonzero": 1,
+        "numel": 1,
+        "requires_grad": false,
+        "shape": []
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.0.linear_up.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "empty_internal_weight_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.0.conv_tp.weight",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.0.linear.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.1.linear_up.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "empty_internal_weight_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.1.conv_tp.weight",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "compiled_tensor_product_wigner_buffer",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.1.conv_tp._compiled_main_left_right._w3j_1_2_1",
+        "nonzero": 11,
+        "numel": 45,
+        "requires_grad": false,
+        "shape": [
+          3,
+          5,
+          3
+        ]
+      },
+      {
+        "classification": "compiled_tensor_product_wigner_buffer",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.1.conv_tp._compiled_main_left_right._w3j_1_1_2",
+        "nonzero": 11,
+        "numel": 45,
+        "requires_grad": false,
+        "shape": [
+          3,
+          3,
+          5
+        ]
+      },
+      {
+        "classification": "compiled_tensor_product_wigner_buffer",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.1.conv_tp._compiled_main_left_right._w3j_1_3_2",
+        "nonzero": 21,
+        "numel": 105,
+        "requires_grad": false,
+        "shape": [
+          3,
+          7,
+          5
+        ]
+      },
+      {
+        "classification": "compiled_tensor_product_wigner_buffer",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.1.conv_tp._compiled_main_left_right._w3j_1_2_3",
+        "nonzero": 21,
+        "numel": 105,
+        "requires_grad": false,
+        "shape": [
+          3,
+          5,
+          7
+        ]
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "interactions.1.linear.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "products.0.linear.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "products.1.linear.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "readouts.0.linear.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "readouts.1.linear_1.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      },
+      {
+        "classification": "empty_bias_tensor",
+        "dtype": "torch.float64",
+        "kind": "buffer",
+        "name": "readouts.1.linear_2.bias",
+        "nonzero": 0,
+        "numel": 0,
+        "requires_grad": false,
+        "shape": [
+          0
+        ]
+      }
+    ],
+    "missing_trainable_parameter_numel": 0,
+    "scope_note": "This compares the full upstream state_dict against the serialized MP0b runtime export tensor list. The companion upstream_state_dict_inventory.json stores dtype, shape, and value hashes for every upstream state_dict tensor, but this is not a broad runtime parity claim; arbitrary MACE-MP0b compatibility still requires validation beyond this scoped export.",
+    "scoped_runtime_tensor_count": 64
+  },
+  "top_level_modules": [
+    {
+      "class": "mace.modules.blocks.LinearNodeEmbeddingBlock",
+      "name": "node_embedding"
+    },
+    {
+      "class": "mace.modules.blocks.RadialEmbeddingBlock",
+      "name": "radial_embedding"
+    },
+    {
+      "class": "mace.modules.radial.ZBLBasis",
+      "name": "pair_repulsion_fn"
+    },
+    {
+      "class": "e3nn.o3._spherical_harmonics.SphericalHarmonics",
+      "name": "spherical_harmonics"
+    },
+    {
+      "class": "mace.modules.blocks.AtomicEnergiesBlock",
+      "name": "atomic_energies_fn"
+    },
+    {
+      "class": "torch.nn.modules.container.ModuleList",
+      "name": "interactions"
+    },
+    {
+      "class": "torch.nn.modules.container.ModuleList",
+      "name": "products"
+    },
+    {
+      "class": "torch.nn.modules.container.ModuleList",
+      "name": "readouts"
+    },
+    {
+      "class": "mace.modules.blocks.ScaleShiftBlock",
+      "name": "scale_shift"
+    }
+  ]
+}

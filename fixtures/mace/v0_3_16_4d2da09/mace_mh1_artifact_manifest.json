@@ -1,0 +1,97 @@
+{
+  "documented_heads": [
+    "omat_pbe",
+    "omol",
+    "spice_wB97M",
+    "oc20_usemppbe",
+    "matpes_r2scan"
+  ],
+  "family": "MACE-MH-1",
+  "generated_at": "2026-05-20T12:28:48.646823+00:00",
+  "observed_heads": null,
+  "observed_heads_note": "Populate from tools/reference/inspect_mace_mh1_artifact.py; the public model card/release notes and the serialized model may differ.",
+  "official_sources": {
+    "github-release": {
+      "filename": "mace-mh-1.model",
+      "role": "primary_for_upstream_mace_registry",
+      "selected_model": "mh-1",
+      "sha256": "a522eb7f59c7879963d41586528f4980baf33e086c94aa92e3eafdeccad3be47",
+      "size_bytes": 59208139,
+      "source_kind": "github-release",
+      "url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mh_1/mace-mh-1.model"
+    },
+    "github-release-mh0": {
+      "filename": "mace-mh-0.model",
+      "role": "predecessor_not_target",
+      "selected_model": "mh-0",
+      "sha256": "d62ff8f293664e6556cfa49364b28ee72a70cf1e6150f3c111a578397fed609d",
+      "size_bytes": 39921174,
+      "source_kind": "github-release",
+      "url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mh_1/mace-mh-0.model"
+    },
+    "huggingface": {
+      "filename": "mace-mh-1.model",
+      "role": "official_model_card_payload_sha_differs_from_github_release",
+      "selected_model": "mh-1",
+      "sha256": "ec00a2705854622fbbd898ccfb7701072fcd674709102d009fb919c1b8cc5dde",
+      "size_bytes": 59208715,
+      "source_kind": "huggingface",
+      "url": "https://huggingface.co/mace-foundations/mace-mh-1/resolve/main/mace-mh-1.model"
+    }
+  },
+  "purpose": "official MACE-MH-1 artifact pin for reference-only inspection and scoped Rust export",
+  "python": {
+    "executable": "python3",
+    "python_version": "3.9.6"
+  },
+  "reference": {
+    "commit": "4d2da09413ac1407f37cdbb6b81fa28e4c15655e",
+    "name": "mace",
+    "package_version": "0.3.16",
+    "repository": "https://github.com/ACEsuit/mace"
+  },
+  "requested_heads": [
+    "omat_pbe",
+    "omol",
+    "spice_wB97M",
+    "oc20_usemppbe",
+    "matpes_r2scan"
+  ],
+  "schema_version": "mace-mh1-artifact-v1",
+  "scope": {
+    "conversion_note": "The binary itself is not committed. Future `.e3rs` conversion artifacts must serialize only explicitly supported fixed tensors and plans.",
+    "normal_cargo_test_dependency": false,
+    "rust_runtime_dependency": false,
+    "status": "pinned_reference_binary"
+  },
+  "selected_artifact": {
+    "binary_tracked_by_git": false,
+    "cache_path": "outputs/reference-artifacts/mace/mace-mh1/github-release/mace-mh-1.model",
+    "downloaded": false,
+    "filename": "mace-mh-1.model",
+    "sha256": "a522eb7f59c7879963d41586528f4980baf33e086c94aa92e3eafdeccad3be47",
+    "size_bytes": 59208139,
+    "source_key": "github-release",
+    "source_kind": "github-release",
+    "url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mh_1/mace-mh-1.model"
+  },
+  "selected_model": "mh-1",
+  "size_variant_scope": {
+    "implementation_target": "mh-1",
+    "note": "MACE-MH-1 has no size axis in the checked official sources. Do not introduce synthetic small/medium/large or s/m/l labels for this family.",
+    "official_model_keys_found": [
+      "mh-0",
+      "mh-1"
+    ],
+    "status": "not_applicable_for_mace_mh1"
+  },
+  "source_notes": [
+    "The Hugging Face and GitHub release mace-mh-1.model payloads currently have different SHA256 values and byte sizes; treat them as separate source candidates, not mirrors.",
+    "The primary implementation target is the GitHub release asset because the pinned upstream MACE foundations registry maps model key mh-1 to that URL."
+  ],
+  "upstream_mace_registry": {
+    "source_file": "third_party/mace/mace/calculators/foundations_models.py",
+    "url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mh_1/mace-mh-1.model",
+    "url_key": "mh-1"
+  }
+}
